@@ -1,0 +1,154 @@
+ Running frontend commit fbe12af116bc822d089be7cb5a2e393b78d858ce
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 Statsig is not ready to log exposures, will retry in 1 seconds
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+setTimeout
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:63
+logExposureForFeatureGateCheck @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:1096
+getFeatureGateFromInitialOptions @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:1096
+getFeatureGate @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:1096
+getFeatureGate @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:1431
+932235 @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:420
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+801936 @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:41
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+781295 @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:418
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+593464 @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:4
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+816199 @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:80
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+881625 @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:531
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+28285 @ 1772-75b46c7a96d0a01e.min.js.br:sourcemap:3
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+344653 @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:420
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+912563 @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:420
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+941181 @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:4
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+577246 @ 5340-37939770a92d139c.min.js.br:sourcemap:3
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+483051 @ 8222-714b50f6fa462b79.min.js.br:sourcemap:3
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+171068 @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:4
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+(anonymous) @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:709
+i.O @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+(anonymous) @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:709
+r @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+(anonymous) @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:3
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+Ignoring duplicate Content-Security-Policy directive 'worker-src'.
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [import] git: 32316aad430e1702f36b927d849d2e88aab330ca, stamp: 9356B1DF1C1877B4
+1709-a9e5b3918781030c.min.js.br:sourcemap:8 The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127
+initialize @ 1709-a9e5b3918781030c.min.js.br:sourcemap:8
+await in initialize
+n @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:1433
+gg @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+await in (anonymous)
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:1727
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:46
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+dispatch @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:46
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:1727
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:46
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+dispatch @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:46
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:1727
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:46
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+dispatch @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:46
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:170
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:46
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+dispatch @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:46
+(anonymous) @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:232
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:170
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:46
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+d @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:1098
+K @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+time @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:393
+(anonymous) @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+await in (anonymous)
+tW @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:170
+SQ @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191
+(anonymous) @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:6
+i @ 3435-4bba9c89a27e3a1e.min.js.br:sourcemap:1065
+171068 @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:6
+i @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+(anonymous) @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:709
+i.O @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+(anonymous) @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:709
+r @ runtime~figma_app-05b67dac89a51d06.min.js.br:sourcemap:3
+(anonymous) @ figma_app-20aa55bacd9a5197.min.js.br:sourcemap:3
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 Loaded 31 scripts (5926719b), 31 from cache (5926719b)
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 Autosave Changes not available or already claimed by another tab undefined
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:11 Unrecognized feature: 'local-network-access'.
+x @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:11
+(index):1  Failed to load resource: net::ERR_FAILED
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [Fullscreen] Booting... (emscripten version 4.0.21)
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [GPU] graphicsAPI:"WebGPU", vendor:"Google Inc. (Intel)" renderer:"ANGLE (Intel, Intel(R) UHD Graphics (0x00009A68) Direct3D11 vs_5_0 ps_5_0, D3D11)" deviceArchitecture:"gen-12lp" deviceDescription:"" webGPUDevice:"" webGPUVendor:"intel" bindings:"emdawnwebgpu"
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [Fullscreen] Ready in 607.6ms
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [FullscreenApp] calling setEditorTheme and setting preference light
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [MultiplayerSession] connecting to wss://www.figma.com/api/multiplayer/R251AVttOrollNNJVfmMOZ?role=editor&tracking_session_id=fRM9AHEaYU6qfhH2&version=151&recentReload=0&file-load-streaming-compression&user-id=1356690328458859882&client_release=fbe12af116bc822d089be7cb5a2e393b78d858ce
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [FullscreenApp] calling setEditorTheme and setting preference light
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [MultiplayerSession] Joining file version 106 (initial load)
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [Fullscreen] loadtime=5.21s maxmem=17294208
+(index):305 [Sprigma] 📦 Ignoring message from unexpected origin https://sprig.figma.com
+(anonymous) @ (index):305
+postMessage
+(anonymous) @ content.js:325
+(anonymous) @ content.js:327
+(index):305 [Sprigma] 📦 Ignoring message from unexpected origin https://sprig.figma.com
+(anonymous) @ (index):305
+postMessage
+(anonymous) @ content.js:325
+(anonymous) @ content.js:327
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [devtools] Initialized LS
+/api/make/R251AVttOrollNNJVfmMOZ/cached_preview_urls?source_code_hash=183b8d4e0cf46f56d829989231d934d9a88872aa:1  Failed to load resource: the server responded with a status of 404 ()
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [devtools] Initialized LS
+shim.js:1  Failed to load resource: net::ERR_CONNECTION_RESET

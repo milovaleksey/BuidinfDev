@@ -1,0 +1,156 @@
+VM11229 Вед-портал-с-авторизацией:4 Running frontend commit fbe12af116bc822d089be7cb5a2e393b78d858ce
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 Statsig is not ready to log exposures, will retry in 1 seconds
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 Autosave Changes not available or already claimed by another tab undefined
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:11 Unrecognized feature: 'local-network-access'.
+x @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:11
+(index):1  Failed to load resource: net::ERR_FAILED
+3435-4bba9c89a27e3a1e.min.js.br:sourcemap:191 [Intervention] Slow network is detected. See https://www.chromestatus.com/feature/5636954674692096 for more details. Fallback font will be used while loading: https://static.figma.com/webfont/1/SourceCodePro-Medium.woff2
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [Fullscreen] Booting... (emscripten version 4.0.21)
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [GPU] graphicsAPI:"WebGPU", vendor:"Google Inc. (Apple)" renderer:"ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)" deviceArchitecture:"metal-3" deviceDescription:"" webGPUDevice:"" webGPUVendor:"apple" bindings:"emdawnwebgpu"
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [Fullscreen] Ready in 43.5ms
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [FullscreenApp] calling setEditorTheme and setting preference dark
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [MultiplayerSession] connecting to wss://www.figma.com/api/multiplayer/R251AVttOrollNNJVfmMOZ?role=editor&tracking_session_id=PexBC0wKCuUBaI7d&version=151&recentReload=0&file-load-streaming-compression&user-id=1356690328458859882&client_release=fbe12af116bc822d089be7cb5a2e393b78d858ce
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [FullscreenApp] calling setEditorTheme and setting preference dark
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [import] git: 32316aad430e1702f36b927d849d2e88aab330ca, stamp: 9356B1DF1C1877B4
+browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=53836213-a421-4c65-9119-b9119189581d&dd-evp-encoding=deflate&batch_time=1773151987490&_dd.api=fetch-keepalive:1  Failed to load resource: net::ERR_NETWORK_CHANGED
+browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=6d016142-8155-47be-bc52-d903d87142a0&dd-evp-encoding=deflate&batch_time=1773151988403&_dd.api=fetch-keepalive:1  Failed to load resource: net::ERR_NETWORK_CHANGED
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [MultiplayerSession] Joining file version 106 (initial load)
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 Migration succeeded: context: fullscreen_migrate_SceneGraphManager, version: 106, duration: 0ms.
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [Fullscreen] loadtime=4.04s maxmem=15745928
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [devtools] Initialized LS
+/api/make/R251AVttOrollNNJVfmMOZ/cached_preview_urls?source_code_hash=51afb62dce5527c8047bac005c06e029846bebdc:1  Failed to load resource: the server responded with a status of 404 ()
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 [devtools] Initialized LS
+browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=b0eee23f-671d-4ded-8229-2b869d4c7241&dd-evp-encoding=deflate&batch_time=1773151989212&_dd.api=fetch:1  Failed to load resource: net::ERR_NETWORK_CHANGED
+browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=4d3fd49c-8f3a-4877-99b9-656759b086be&dd-evp-encoding=deflate&batch_time=1773151989213&_dd.api=fetch:1  Failed to load resource: net::ERR_NETWORK_CHANGED
+browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=3f509a24-7397-49a7-ac5e-10f36b5a56b2&dd-evp-encoding=deflate&batch_time=1773151989832&_dd.api=fetch-keepalive:1  Failed to load resource: net::ERR_NETWORK_CHANGED
+browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=3f27a778-923f-4298-acd1-e0c9ad82b6ce&dd-evp-encoding=deflate&batch_time=1773151992911&_dd.api=fetch:1  Failed to load resource: net::ERR_TIMED_OUT
+browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=538618c4-1dd1-4cbf-8b03-bd776ff9d806&dd-evp-encoding=deflate&batch_time=1773151993755&_dd.api=fetch-keepalive:1  Failed to load resource: net::ERR_TIMED_OUT
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54  POST https://browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=d6e64029-158d-48a4-8fa7-066f3f037681&dd-evp-encoding=deflate&batch_time=1773152003015&_dd.api=fetch-keepalive net::ERR_TIMED_OUT
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+T @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+b @ vendor-e02619323541de64.min.js.br:sourcemap:6
+y @ vendor-e02619323541de64.min.js.br:sourcemap:6
+send @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+u @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54  POST https://browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=07638afe-a8b8-4bbc-8940-c521d19aa5f1&dd-evp-encoding=deflate&batch_time=1773152003017&_dd.api=fetch-keepalive net::ERR_TIMED_OUT
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+T @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+b @ vendor-e02619323541de64.min.js.br:sourcemap:6
+y @ vendor-e02619323541de64.min.js.br:sourcemap:6
+send @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+u @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54  POST https://browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=98911e56-03da-4430-a8a0-791f2fcf5d69&dd-evp-encoding=deflate&batch_time=1773152003022&_dd.api=fetch-keepalive net::ERR_TIMED_OUT
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+T @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+b @ vendor-e02619323541de64.min.js.br:sourcemap:6
+y @ vendor-e02619323541de64.min.js.br:sourcemap:6
+send @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+u @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54 Loaded 0 scripts (0b), 0 from cache (0b)
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54  POST https://browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=067394a2-fa7c-4d8c-8b47-1249f792b8c7&dd-evp-encoding=deflate&batch_time=1773152024016&_dd.api=fetch net::ERR_TIMED_OUT
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+I @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54  POST https://browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=4e993dbe-7788-4654-b165-41f1ef9eec1a&dd-evp-encoding=deflate&batch_time=1773152033023&_dd.api=fetch-keepalive net::ERR_TIMED_OUT
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+T @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+b @ vendor-e02619323541de64.min.js.br:sourcemap:6
+y @ vendor-e02619323541de64.min.js.br:sourcemap:6
+send @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+u @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54  POST https://browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=f62d51a1-be7b-40ec-bddf-899a02e782b6&dd-evp-encoding=deflate&batch_time=1773152033174&_dd.api=fetch net::ERR_TIMED_OUT
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+I @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+Promise.catch
+T @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+b @ vendor-e02619323541de64.min.js.br:sourcemap:6
+y @ vendor-e02619323541de64.min.js.br:sourcemap:6
+send @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+u @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54  POST https://browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=7653631a-6f23-49fd-8e29-00526e10bcd8&dd-evp-encoding=deflate&batch_time=1773152033176&_dd.api=fetch net::ERR_TIMED_OUT
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+I @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+Promise.catch
+T @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+b @ vendor-e02619323541de64.min.js.br:sourcemap:6
+y @ vendor-e02619323541de64.min.js.br:sourcemap:6
+send @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+u @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54  POST https://browser-intake-datadoghq.com/api/v2/rum?ddsource=browser&dd-api-key=pub3f6fa9c94d5ff85890f30fdc10b09c61&dd-evp-origin-version=6.25.2&dd-evp-origin=browser&dd-request-id=2df486ab-47bf-4ce9-9533-3d10407bbed1&dd-evp-encoding=deflate&batch_time=1773152033177&_dd.api=fetch net::ERR_TIMED_OUT
+(anonymous) @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+I @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+Promise.catch
+T @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+b @ vendor-e02619323541de64.min.js.br:sourcemap:6
+y @ vendor-e02619323541de64.min.js.br:sourcemap:6
+send @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:6
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+h @ vendor-e02619323541de64.min.js.br:sourcemap:3
+(anonymous) @ vendor-e02619323541de64.min.js.br:sourcemap:3
+u @ vendor-core-ade2edecaf4781c7.min.js.br:sourcemap:54
