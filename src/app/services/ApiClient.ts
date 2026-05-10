@@ -1,100 +1,86 @@
-import { authService } from './AuthService';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { API_CONFIG } from '../config/api';
 
-export class ApiClient {
-  private baseURL: string;
+class ApiClient {
+  private client: AxiosInstance;
+  private token: string | null = null;
 
   constructor() {
-    // Определяем базовый URL API
-    this.baseURL = window.location.origin.replace(':5173', ':3000');
-  }
-
-  private async getHeaders(): Promise<HeadersInit> {
-    const token = authService.getAccessToken();
-    const headers: HeadersInit = {
-      'Content-Type': 'application/json',
-    };
-
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
-    }
-
-    return headers;
-  }
-
-  async get<T>(endpoint: string): Promise<T> {
-    const response = await fetch(`${this.baseURL}${endpoint}`, {
-      method: 'GET',
-      headers: await this.getHeaders(),
+    this.client = axios.create({
+      baseURL: API_CONFIG.BASE_URL,
+      timeout: API_CONFIG.TIMEOUT,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
 
-    return this.handleResponse<T>(response);
-  }
+    // Load token from localStorage
+    this.token = localStorage.getItem('auth_token');
 
-  async post<T>(endpoint: string, data?: any): Promise<T> {
-    const response = await fetch(`${this.baseURL}${endpoint}`, {
-      method: 'POST',
-      headers: await this.getHeaders(),
-      body: data ? JSON.stringify(data) : undefined,
-    });
-
-    return this.handleResponse<T>(response);
-  }
-
-  async put<T>(endpoint: string, data?: any): Promise<T> {
-    const response = await fetch(`${this.baseURL}${endpoint}`, {
-      method: 'PUT',
-      headers: await this.getHeaders(),
-      body: data ? JSON.stringify(data) : undefined,
-    });
-
-    return this.handleResponse<T>(response);
-  }
-
-  async delete<T>(endpoint: string): Promise<T> {
-    const response = await fetch(`${this.baseURL}${endpoint}`, {
-      method: 'DELETE',
-      headers: await this.getHeaders(),
-    });
-
-    return this.handleResponse<T>(response);
-  }
-
-  private async handleResponse<T>(response: Response): Promise<T> {
-    // Если токен истек (401), пытаемся обновить
-    if (response.status === 401) {
-      console.warn('API: Unauthorized, attempting to refresh token');
-      const refreshed = await authService.refreshAccessToken();
-      
-      if (!refreshed) {
-        // Редирект на страницу входа
-        window.location.href = '/login';
-        throw new Error('Authentication failed');
+    // Request interceptor - add token to headers
+    this.client.interceptors.request.use(
+      (config) => {
+        if (this.token) {
+          config.headers.Authorization = `Bearer ${this.token}`;
+        }
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
       }
+    );
 
-      // Повторяем запрос с новым токеном
-      const retryResponse = await fetch(response.url, {
-        method: response.headers.get('X-Request-Method') || 'GET',
-        headers: await this.getHeaders(),
-      });
-
-      if (!retryResponse.ok) {
-        throw new Error(`HTTP ${retryResponse.status}: ${retryResponse.statusText}`);
+    // Response interceptor - handle errors
+    this.client.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response?.status === 401) {
+          // Unauthorized - clear token and redirect to login
+          this.clearToken();
+          window.location.href = '/login';
+        }
+        return Promise.reject(error);
       }
+    );
+  }
 
-      return retryResponse.json();
-    }
+  setToken(token: string): void {
+    this.token = token;
+    localStorage.setItem('auth_token', token);
+  }
 
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
+  clearToken(): void {
+    this.token = null;
+    localStorage.removeItem('auth_token');
+  }
 
-    // Проверяем, есть ли тело ответа
-    const contentType = response.headers.get('content-type');
-    if (contentType && contentType.includes('application/json')) {
-      return response.json();
-    }
+  getToken(): string | null {
+    return this.token;
+  }
 
-    return {} as T;
+  async get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    const response: AxiosResponse<T> = await this.client.get(url, config);
+    return response.data;
+  }
+
+  async post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+    const response: AxiosResponse<T> = await this.client.post(url, data, config);
+    return response.data;
+  }
+
+  async put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+    const response: AxiosResponse<T> = await this.client.put(url, data, config);
+    return response.data;
+  }
+
+  async delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    const response: AxiosResponse<T> = await this.client.delete(url, config);
+    return response.data;
+  }
+
+  async patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
+    const response: AxiosResponse<T> = await this.client.patch(url, data, config);
+    return response.data;
   }
 }
 

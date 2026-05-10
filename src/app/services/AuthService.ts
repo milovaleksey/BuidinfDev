@@ -1,28 +1,23 @@
 import { User, UserRole, SystemType } from '../types';
+import { apiClient } from './ApiClient';
+import { API_ENDPOINTS } from '../config/api';
 
-interface AuthTokens {
+interface LoginResponse {
   accessToken: string;
-  refreshToken: string;
-  expiresIn: number; // в секундах
+  tokenType: string;
+  userId: number;
+  username: string;
+  email: string;
+  roles: string[];
 }
 
 class AuthService {
   private currentUser: User | null = null;
-  private accessToken: string | null = null;
-  private refreshToken: string | null = null;
-  private tokenExpiryTime: number | null = null;
-  private refreshTimeout: NodeJS.Timeout | null = null;
-
   private readonly STORAGE_KEY = 'bms_current_user';
-  private readonly ACCESS_TOKEN_KEY = 'bms_access_token';
-  private readonly REFRESH_TOKEN_KEY = 'bms_refresh_token';
-  private readonly TOKEN_EXPIRY_KEY = 'bms_token_expiry';
-
-  // URL бэкенда - из логов видно что это внутренний адрес
-  private readonly API_BASE_URL = window.location.origin.replace(':5173', ':3000');
+  private readonly USE_MOCK = false; // Установить в true для моковых данных
 
   constructor() {
-    // Load user and tokens from localStorage
+    // Load user from localStorage
     const stored = localStorage.getItem(this.STORAGE_KEY);
     if (stored) {
       try {
@@ -31,59 +26,67 @@ class AuthService {
         console.error('Failed to parse stored user', e);
       }
     }
-
-    this.accessToken = localStorage.getItem(this.ACCESS_TOKEN_KEY);
-    this.refreshToken = localStorage.getItem(this.REFRESH_TOKEN_KEY);
-    const expiry = localStorage.getItem(this.TOKEN_EXPIRY_KEY);
-    if (expiry) {
-      this.tokenExpiryTime = parseInt(expiry, 10);
-    }
-
-    // Проверяем и обновляем токен при инициализации
-    if (this.isAuthenticated() && this.refreshToken) {
-      this.scheduleTokenRefresh();
-    }
   }
 
-  // Реальный login с API
+  // Login with backend API
   async login(username: string, password: string): Promise<boolean> {
-    try {
-      const response = await fetch(`${this.API_BASE_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (!response.ok) {
-        console.error('Login failed:', response.status);
-        return false;
-      }
-
-      const data = await response.json();
-      
-      // Ожидаем структуру: { user, accessToken, refreshToken, expiresIn }
-      if (data.user && data.accessToken) {
-        this.setAuthData(data.user, {
-          accessToken: data.accessToken,
-          refreshToken: data.refreshToken,
-          expiresIn: data.expiresIn || 3600, // по умолчанию 1 час
-        });
-        return true;
-      }
-
-      return false;
-    } catch (error) {
-      console.error('Login error:', error);
-      
-      // Fallback на моковый login для разработки
+    if (this.USE_MOCK) {
       return this.mockLogin(username, password);
     }
+
+    try {
+      const response: LoginResponse = await apiClient.post(API_ENDPOINTS.AUTH.LOGIN, {
+        username,
+        password,
+      });
+
+      // Save token
+      apiClient.setToken(response.accessToken);
+
+      // Map backend response to frontend User type
+      const role = this.mapBackendRole(response.roles);
+      this.currentUser = {
+        id: response.userId.toString(),
+        username: response.username,
+        email: response.email,
+        role: role,
+        permissions: {
+          rooms: [],
+          systems: this.getSystemPermissionsByRole(role),
+        },
+      };
+
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.currentUser));
+      return true;
+    } catch (error) {
+      console.error('Login failed:', error);
+      return false;
+    }
   }
 
-  // Моковый login для разработки (когда бэкенд недоступен)
+  private mapBackendRole(roles: string[]): UserRole {
+    if (roles.includes('ROLE_ADMIN')) return 'admin';
+    if (roles.includes('ROLE_MANAGER')) return 'manager';
+    if (roles.includes('ROLE_OPERATOR')) return 'operator';
+    return 'viewer';
+  }
+
+  private getSystemPermissionsByRole(role: UserRole): SystemType[] {
+    switch (role) {
+      case 'admin':
+        return ['access_control', 'video', 'heating', 'lighting', 'hvac'];
+      case 'manager':
+        return ['access_control', 'heating', 'lighting', 'hvac'];
+      case 'operator':
+        return ['heating', 'lighting'];
+      default:
+        return [];
+    }
+  }
+
+  // Mock login for testing without backend
   private mockLogin(username: string, password: string): boolean {
+    // Моковые пользователи с паролями
     const mockUsers: Record<string, { user: User; password: string }> = {
       'admin': {
         password: 'admin123',
@@ -93,7 +96,7 @@ class AuthService {
           email: 'admin@building.com',
           role: 'admin',
           permissions: {
-            rooms: [],
+            rooms: [], // admin has access to all rooms
             systems: ['access_control', 'video', 'heating', 'lighting', 'hvac']
           }
         }
@@ -141,140 +144,18 @@ class AuthService {
 
     const userData = mockUsers[username];
     if (userData && password === userData.password) {
-      // Генерируем моковый JWT токен
-      const mockToken = this.generateMockJWT(userData.user);
-      this.setAuthData(userData.user, {
-        accessToken: mockToken,
-        refreshToken: mockToken,
-        expiresIn: 3600,
-      });
+      this.currentUser = userData.user;
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(userData.user));
       return true;
     }
 
     return false;
   }
 
-  // Генерация мокового JWT токена
-  private generateMockJWT(user: User): string {
-    const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
-    const payload = btoa(JSON.stringify({
-      sub: user.id,
-      username: user.username,
-      role: user.role,
-      exp: Math.floor(Date.now() / 1000) + 3600, // 1 час
-    }));
-    const signature = btoa('mock-signature');
-    return `${header}.${payload}.${signature}`;
-  }
-
-  // Установка данных авторизаци��
-  private setAuthData(user: User, tokens: AuthTokens): void {
-    this.currentUser = user;
-    this.accessToken = tokens.accessToken;
-    this.refreshToken = tokens.refreshToken;
-    this.tokenExpiryTime = Date.now() + tokens.expiresIn * 1000;
-
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
-    localStorage.setItem(this.ACCESS_TOKEN_KEY, tokens.accessToken);
-    localStorage.setItem(this.REFRESH_TOKEN_KEY, tokens.refreshToken);
-    localStorage.setItem(this.TOKEN_EXPIRY_KEY, this.tokenExpiryTime.toString());
-
-    this.scheduleTokenRefresh();
-  }
-
-  // Планирование обновления токена
-  private scheduleTokenRefresh(): void {
-    if (this.refreshTimeout) {
-      clearTimeout(this.refreshTimeout);
-    }
-
-    if (!this.tokenExpiryTime || !this.refreshToken) {
-      return;
-    }
-
-    // Обновляем токен за 5 минут до истечения
-    const timeUntilRefresh = this.tokenExpiryTime - Date.now() - 5 * 60 * 1000;
-    
-    if (timeUntilRefresh > 0) {
-      this.refreshTimeout = setTimeout(() => {
-        this.refreshAccessToken();
-      }, timeUntilRefresh);
-    } else {
-      // Токен уже истек или истекает, обновляем немедленно
-      this.refreshAccessToken();
-    }
-  }
-
-  // Обновление access токена
-  async refreshAccessToken(): Promise<boolean> {
-    if (!this.refreshToken) {
-      console.error('No refresh token available');
-      this.logout();
-      return false;
-    }
-
-    try {
-      const response = await fetch(`${this.API_BASE_URL}/api/auth/refresh`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ refreshToken: this.refreshToken }),
-      });
-
-      if (!response.ok) {
-        console.error('Token refresh failed:', response.status);
-        this.logout();
-        return false;
-      }
-
-      const data = await response.json();
-      
-      if (data.accessToken && this.currentUser) {
-        this.setAuthData(this.currentUser, {
-          accessToken: data.accessToken,
-          refreshToken: data.refreshToken || this.refreshToken,
-          expiresIn: data.expiresIn || 3600,
-        });
-        console.log('✅ Token refreshed successfully');
-        return true;
-      }
-
-      this.logout();
-      return false;
-    } catch (error) {
-      console.error('Token refresh error:', error);
-      // При ошибке не выходим сразу, даем возможность повторить
-      // Планируем повторную попытку через 1 минуту
-      setTimeout(() => this.refreshAccessToken(), 60000);
-      return false;
-    }
-  }
-
-  // Получение текущего access токена
-  getAccessToken(): string | null {
-    // Проверяем, не истек ли токен
-    if (this.tokenExpiryTime && Date.now() >= this.tokenExpiryTime) {
-      console.warn('Access token expired, triggering refresh');
-      this.refreshAccessToken();
-    }
-    return this.accessToken;
-  }
-
   logout(): void {
-    if (this.refreshTimeout) {
-      clearTimeout(this.refreshTimeout);
-    }
-    
     this.currentUser = null;
-    this.accessToken = null;
-    this.refreshToken = null;
-    this.tokenExpiryTime = null;
-    
     localStorage.removeItem(this.STORAGE_KEY);
-    localStorage.removeItem(this.ACCESS_TOKEN_KEY);
-    localStorage.removeItem(this.REFRESH_TOKEN_KEY);
-    localStorage.removeItem(this.TOKEN_EXPIRY_KEY);
+    apiClient.clearToken();
   }
 
   getCurrentUser(): User | null {
@@ -282,7 +163,7 @@ class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return this.currentUser !== null && this.accessToken !== null;
+    return this.currentUser !== null;
   }
 
   hasRoomAccess(roomId: string): boolean {

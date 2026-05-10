@@ -22,12 +22,13 @@ export function LoginForm() {
     try {
       const success = await authService.login(username, password);
       if (success) {
-        navigate('/dashboard');
+        navigate('/locations');
       } else {
         setError('Неверные учетные данные');
       }
     } catch (err) {
-      setError('Произошла ошибка при входе');
+      setError('Произошла ошибка при входе. Проверьте подключение к серверу.');
+      console.error('Login error:', err);
     } finally {
       setLoading(false);
     }

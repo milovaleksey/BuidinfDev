@@ -1,5 +1,4 @@
 import { Device, MQTTMessage } from '../types';
-import { authService } from './AuthService';
 
 type MessageCallback = (message: MQTTMessage) => void;
 
@@ -7,122 +6,20 @@ class MockMQTTService {
   private subscribers: Map<string, Set<MessageCallback>> = new Map();
   private connected: boolean = false;
   private intervalId: NodeJS.Timeout | null = null;
-  private ws: WebSocket | null = null;
-  private reconnectTimeout: NodeJS.Timeout | null = null;
-  private reconnectAttempts: number = 0;
-  private readonly MAX_RECONNECT_ATTEMPTS = 5;
-  private readonly WS_URL = window.location.origin.replace('http', 'ws').replace(':5173', ':3000') + '/mqtt';
 
   async connect(): Promise<void> {
-    // Получаем токен авторизации
-    const token = authService.getAccessToken();
-    
-    if (!token) {
-      console.warn('MQTT: No auth token available, using mock mode');
-      return this.connectMock();
-    }
-
-    try {
-      // Пытаемся подключиться к реальному WebSocket с токеном
-      await this.connectWebSocket(token);
-    } catch (error) {
-      console.warn('MQTT WebSocket connection failed, falling back to mock mode', error);
-      return this.connectMock();
-    }
-  }
-
-  private async connectWebSocket(token: string): Promise<void> {
-    return new Promise((resolve, reject) => {
-      try {
-        // Создаем WebSocket соединение с токеном в URL или заголовках
-        const wsUrl = `${this.WS_URL}?token=${encodeURIComponent(token)}`;
-        this.ws = new WebSocket(wsUrl);
-
-        const timeout = setTimeout(() => {
-          if (this.ws && this.ws.readyState !== WebSocket.OPEN) {
-            this.ws.close();
-            reject(new Error('WebSocket connection timeout'));
-          }
-        }, 5000);
-
-        this.ws.onopen = () => {
-          clearTimeout(timeout);
-          this.connected = true;
-          this.reconnectAttempts = 0;
-          console.log('✅ MQTT: Connected to WebSocket broker');
-          resolve();
-        };
-
-        this.ws.onmessage = (event) => {
-          try {
-            const message: MQTTMessage = JSON.parse(event.data);
-            this.notifySubscribers(message);
-          } catch (error) {
-            console.error('MQTT: Failed to parse message', error);
-          }
-        };
-
-        this.ws.onerror = (error) => {
-          console.error('MQTT WebSocket error:', error);
-          clearTimeout(timeout);
-          reject(error);
-        };
-
-        this.ws.onclose = (event) => {
-          this.connected = false;
-          console.log(`MQTT WebSocket closed: ${event.code} ${event.reason}`);
-          
-          // Автоматическое переподключение
-          if (this.reconnectAttempts < this.MAX_RECONNECT_ATTEMPTS) {
-            this.reconnectAttempts++;
-            const delay = Math.min(1000 * Math.pow(2, this.reconnectAttempts), 30000);
-            console.log(`MQTT: Reconnecting in ${delay}ms (attempt ${this.reconnectAttempts}/${this.MAX_RECONNECT_ATTEMPTS})`);
-            
-            this.reconnectTimeout = setTimeout(() => {
-              const newToken = authService.getAccessToken();
-              if (newToken) {
-                this.connectWebSocket(newToken).catch(() => {
-                  console.warn('MQTT: Reconnection failed, switching to mock mode');
-                  this.connectMock();
-                });
-              }
-            }, delay);
-          } else {
-            console.warn('MQTT: Max reconnection attempts reached, switching to mock mode');
-            this.connectMock();
-          }
-        };
-      } catch (error) {
-        reject(error);
-      }
-    });
-  }
-
-  private async connectMock(): Promise<void> {
     await new Promise(resolve => setTimeout(resolve, 300));
     this.connected = true;
-    console.log('MQTT: Connected to broker (mock mode)');
+    console.log('MQTT: Connected to broker (mock)');
     this.startMockDataStream();
   }
 
   disconnect(): void {
     this.connected = false;
-    
-    if (this.reconnectTimeout) {
-      clearTimeout(this.reconnectTimeout);
-      this.reconnectTimeout = null;
-    }
-    
-    if (this.ws) {
-      this.ws.close();
-      this.ws = null;
-    }
-    
     if (this.intervalId) {
       clearInterval(this.intervalId);
       this.intervalId = null;
     }
-    
     console.log('MQTT: Disconnected from broker');
   }
 
@@ -196,7 +93,7 @@ class MockMQTTService {
     this.intervalId = setInterval(() => {
       if (!this.connected) return;
 
-      // Генерация случайных данных ��ля различных устройств
+      // Генерация случайных данных для различных устройств
       const floors = [1, 2, 3, 4, 5];
       const rooms = ['01', '02', '03', '04', '05'];
 
