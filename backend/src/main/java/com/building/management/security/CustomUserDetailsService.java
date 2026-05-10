@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
-        log.debug("✅ User found: id={}, username={}, enabled={}", user.getId(), user.getUsername(), user.isEnabled());
+        log.debug("✅ User found: id={}, username={}, enabled={}", user.getId(), user.getUsername(), user.getEnabled());
         log.debug("🔐 Password hash from DB: {}", user.getPasswordHash());
         log.debug("👥 User has {} roles", user.getRoles().size());
 
