@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/floors")
+@RequestMapping("/floors")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class FloorController {

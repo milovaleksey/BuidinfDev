@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * Node-RED отвечает за управление устройствами через MQTT и генерацию отчетов
  */
 @RestController
-@RequestMapping("/api/nodered")
+@RequestMapping("/nodered")
 @RequiredArgsConstructor
 @Slf4j
 @CrossOrigin(origins = "*")
@@ -111,7 +111,7 @@ public class ProxyController {
             HttpServletRequest request,
             Authentication authentication
     ) {
-        String path = request.getRequestURI().replace("/api/nodered", "");
+        String path = request.getRequestURI().replace("/nodered", "");
         String queryString = request.getQueryString();
         String fullPath = queryString != null ? path + "?" + queryString : path;
         
