@@ -1,21 +1,25 @@
 import { Building, Floor, Room, Device } from '../types';
-import { buildingSystemService } from './BuildingSystemService';
+import { integratedBuildingService } from './IntegratedBuildingService';
 
 /**
  * BuildingService - обертка для обратной совместимости
- * Теперь работает через BuildingSystemService с текущим зданием
+ * Теперь работает через IntegratedBuildingService с текущим зданием
  */
 class BuildingService {
   isFromStorage(): boolean {
-    return buildingSystemService.isFromStorage();
+    return integratedBuildingService.isFromStorage();
+  }
+
+  isFromBackend(): boolean {
+    return integratedBuildingService.isFromBackend();
   }
 
   getLastUpdated(): string | undefined {
-    return buildingSystemService.getLastUpdated();
+    return integratedBuildingService.getLastUpdated();
   }
 
   getBuilding(): Building {
-    const building = buildingSystemService.getCurrentBuilding();
+    const building = integratedBuildingService.getCurrentBuilding();
     if (!building) {
       throw new Error('No current building selected');
     }
@@ -23,71 +27,73 @@ class BuildingService {
   }
 
   getFloor(floorId: string): Floor | undefined {
-    return buildingSystemService.getFloor(floorId);
+    return integratedBuildingService.getFloor(floorId);
   }
 
   getRoom(roomId: string): Room | undefined {
-    return buildingSystemService.getRoom(roomId);
+    return integratedBuildingService.getRoom(roomId);
   }
 
   updateRoom(roomId: string, updates: Partial<Room>): void {
-    buildingSystemService.updateRoom(roomId, updates);
+    integratedBuildingService.updateRoom(roomId, updates);
   }
 
   updateDevice(deviceId: string, updates: Partial<Device>): void {
-    buildingSystemService.updateDevice(deviceId, updates);
+    integratedBuildingService.updateDevice(deviceId, updates);
   }
 
   addDevice(roomId: string, device: Device): void {
-    buildingSystemService.addDevice(roomId, device);
+    integratedBuildingService.addDevice(roomId, device);
   }
 
   removeDevice(deviceId: string): void {
-    buildingSystemService.removeDevice(deviceId);
+    integratedBuildingService.removeDevice(deviceId);
   }
 
   // Storage methods
   saveToLocalStorage(): void {
-    buildingSystemService.saveToLocalStorage();
+    integratedBuildingService.saveToLocalStorage();
   }
 
   exportToJSON(): void {
-    const buildingId = buildingSystemService.getCurrentBuildingId();
+    const buildingId = integratedBuildingService.getCurrentBuildingId();
     if (buildingId) {
-      buildingSystemService.exportBuildingToJSON(buildingId);
+      integratedBuildingService.exportBuildingToJSON(buildingId);
     }
   }
 
   exportFloorToJSON(floorId: string): void {
-    buildingSystemService.exportFloorToJSON(floorId);
+    // TODO: Implement floor export in IntegratedBuildingService
+    console.warn('exportFloorToJSON not yet implemented');
   }
 
   async importFromJSON(file: File): Promise<void> {
-    await buildingSystemService.importBuildingFromJSON(file);
+    await integratedBuildingService.importBuildingFromJSON(file);
   }
 
   async importFloorFromJSON(file: File): Promise<void> {
-    await buildingSystemService.importFloorFromJSON(file);
+    // TODO: Implement floor import in IntegratedBuildingService
+    console.warn('importFloorFromJSON not yet implemented');
   }
 
   getBuildingStats() {
-    const buildingId = buildingSystemService.getCurrentBuildingId();
+    const buildingId = integratedBuildingService.getCurrentBuildingId();
     if (buildingId) {
-      return buildingSystemService.getBuildingStats(buildingId);
+      return integratedBuildingService.getBuildingStats(buildingId);
     }
     return null;
   }
 
-  addFloor(name: string, number: number): Floor {
-    const buildingId = buildingSystemService.getCurrentBuildingId();
+  async addFloor(name: string, number: number): Promise<Floor> {
+    const buildingId = integratedBuildingService.getCurrentBuildingId();
     if (!buildingId) {
       throw new Error('No current building selected');
     }
-    return buildingSystemService.addFloor(buildingId, name, number);
+    return await integratedBuildingService.addFloor(buildingId, name, number);
   }
 
-  deleteFloor(floorId: string): void {
-    buildingSystemService.deleteFloor(floorId);
+  async deleteFloor(floorId: string): Promise<void> {
+    await integratedBuildingService.deleteFloor(floorId);
   }
 
   exportBuilding() {
@@ -100,11 +106,11 @@ class BuildingService {
   }
 
   resetBuilding(): void {
-    buildingSystemService.resetToDefault();
+    integratedBuildingService.resetToDefault();
   }
 
   resetToDefault(): void {
-    buildingSystemService.resetToDefault();
+    integratedBuildingService.resetToDefault();
   }
 }
 

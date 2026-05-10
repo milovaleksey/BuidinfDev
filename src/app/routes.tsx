@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router';
 import { authService } from './services/AuthService';
 import { LoginForm } from './components/LoginForm';
 import { DashboardLayout } from './components/DashboardLayout';
+import { DataLoader } from './components/DataLoader';
 import { Locations } from './pages/Locations';
 import { FloorView } from './pages/FloorView';
 import { FloorEditor } from './pages/FloorEditor';
@@ -12,7 +13,11 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   if (!authService.isAuthenticated()) {
     return <Navigate to="/login" replace />;
   }
-  return <>{children}</>;
+  return (
+    <DataLoader>
+      {children}
+    </DataLoader>
+  );
 }
 
 function LoginRoute({ children }: { children: React.ReactNode }) {

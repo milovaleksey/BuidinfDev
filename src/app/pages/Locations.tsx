@@ -1,5 +1,5 @@
 import { Link } from '../components/ui/link';
-import { buildingSystemService } from '../services/BuildingSystemService';
+import { integratedBuildingService } from '../services/IntegratedBuildingService';
 import { authService } from '../services/AuthService';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -14,7 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import type { LocationType, Building as BuildingType } from '../types';
 
 export function Locations() {
-  const buildings = buildingSystemService.getAllBuildings();
+  const buildings = integratedBuildingService.getAllBuildings();
   const canEdit = authService.canEditFloors();
   const [expandedBuildings, setExpandedBuildings] = useState<Set<string>>(new Set());
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
@@ -41,51 +41,56 @@ export function Locations() {
     setExpandedBuildings(newExpanded);
   };
 
-  const handleCreateLocation = () => {
+  const handleCreateLocation = async () => {
     if (!newLocationName.trim()) {
       toast.error('Введите название локации');
       return;
     }
 
-    if (newLocationType === 'building') {
-      const newBuilding = buildingSystemService.createBuilding(newLocationName, newLocationAddress || undefined);
-      toast.success(`Здание "${newLocationName}" создано`);
-      setExpandedBuildings(new Set([newBuilding.id]));
-      setIsCreateDialogOpen(false);
-      resetForm();
-      window.location.reload(); // Перезагружаем страницу для обновления данных
-    }
-
-    if (newLocationType === 'floor') {
-      if (!selectedBuildingId) {
-        toast.error('Выберите здание');
-        return;
+    try {
+      if (newLocationType === 'building') {
+        const newBuilding = await integratedBuildingService.createBuilding(newLocationName, newLocationAddress || undefined);
+        toast.success(`Здание "${newLocationName}" создано`);
+        setExpandedBuildings(new Set([newBuilding.id]));
+        setIsCreateDialogOpen(false);
+        resetForm();
+        window.location.reload(); // Перезагружаем страницу для обновления данных
       }
 
-      const floorNumber = parseInt(newFloorNumber);
-      if (isNaN(floorNumber)) {
-        toast.error('Введите корректный номер этажа');
-        return;
-      }
-
-      const building = buildingSystemService.getBuilding(selectedBuildingId);
-      if (building) {
-        const existingFloor = building.floors.find(f => f.number === floorNumber);
-        if (existingFloor) {
-          toast.error(`Этаж ${floorNumber} уже существует в этом здании`);
+      if (newLocationType === 'floor') {
+        if (!selectedBuildingId) {
+          toast.error('Выберите здание');
           return;
         }
 
-        buildingSystemService.addFloor(selectedBuildingId, newLocationName, floorNumber);
-        toast.success(`Этаж "${newLocationName}" создан`);
-        setIsCreateDialogOpen(false);
-        resetForm();
-        window.location.reload();
+        const floorNumber = parseInt(newFloorNumber);
+        if (isNaN(floorNumber)) {
+          toast.error('Введите корректный номер этажа');
+          return;
+        }
+
+        const building = integratedBuildingService.getBuilding(selectedBuildingId);
+        if (building) {
+          const existingFloor = building.floors.find(f => f.number === floorNumber);
+          if (existingFloor) {
+            toast.error(`Этаж ${floorNumber} уже существует в этом здании`);
+            return;
+          }
+
+          await integratedBuildingService.addFloor(selectedBuildingId, newLocationName, floorNumber);
+          toast.success(`Этаж "${newLocationName}" создан`);
+          setIsCreateDialogOpen(false);
+          resetForm();
+          window.location.reload();
+        }
       }
+    } catch (error) {
+      toast.error('Ошибка при создании локации: ' + (error as Error).message);
+      console.error('Create location error:', error);
     }
   };
 
-  const handleDeleteBuilding = () => {
+  const handleDeleteBuilding = async () => {
     if (!buildingToDelete) return;
 
     if (buildingToDelete.floors.length > 0) {
@@ -102,17 +107,22 @@ export function Locations() {
       return;
     }
 
-    buildingSystemService.deleteBuilding(buildingToDelete.id);
-    toast.success(`Здание "${buildingToDelete.name}" удалено`);
-    setIsDeleteDialogOpen(false);
-    setBuildingToDelete(null);
-    window.location.reload();
+    try {
+      await integratedBuildingService.deleteBuilding(buildingToDelete.id);
+      toast.success(`Здание "${buildingToDelete.name}" удалено`);
+      setIsDeleteDialogOpen(false);
+      setBuildingToDelete(null);
+      window.location.reload();
+    } catch (error) {
+      toast.error('Ошибка при удалении здания: ' + (error as Error).message);
+      console.error('Delete building error:', error);
+    }
   };
 
-  const handleDeleteFloor = () => {
+  const handleDeleteFloor = async () => {
     if (!floorToDelete) return;
 
-    const building = buildingSystemService.getBuilding(floorToDelete.buildingId);
+    const building = integratedBuildingService.getBuilding(floorToDelete.buildingId);
     const floor = building?.floors.find(f => f.id === floorToDelete.floorId);
     
     if (floor && floor.rooms.length > 0) {
@@ -122,15 +132,20 @@ export function Locations() {
       return;
     }
 
-    buildingSystemService.deleteFloor(floorToDelete.floorId);
-    toast.success(`Этаж "${floorToDelete.floorName}" удален`);
-    setIsDeleteDialogOpen(false);
-    setFloorToDelete(null);
-    window.location.reload();
+    try {
+      await integratedBuildingService.deleteFloor(floorToDelete.floorId);
+      toast.success(`Этаж "${floorToDelete.floorName}" удален`);
+      setIsDeleteDialogOpen(false);
+      setFloorToDelete(null);
+      window.location.reload();
+    } catch (error) {
+      toast.error('Ошибка при удалении этажа: ' + (error as Error).message);
+      console.error('Delete floor error:', error);
+    }
   };
 
   const handleReset = () => {
-    buildingSystemService.resetToDefault();
+    integratedBuildingService.resetToDefault();
     toast.success('Система сброшена до начального состояния');
     setIsResetDialogOpen(false);
     window.location.reload();
@@ -145,7 +160,7 @@ export function Locations() {
   };
 
   const handleExport = () => {
-    buildingSystemService.exportSystemToJSON();
+    integratedBuildingService.exportSystemToJSON();
     toast.success('Система зданий экспортирована');
   };
 
@@ -154,7 +169,7 @@ export function Locations() {
     if (!file) return;
 
     try {
-      await buildingSystemService.importBuildingFromJSON(file);
+      await integratedBuildingService.importBuildingFromJSON(file);
       toast.success('Здание импортировано. Перезагрузите страницу.');
       setTimeout(() => {
         window.location.reload();
@@ -177,7 +192,7 @@ export function Locations() {
   };
 
   const getFloorStats = (buildingId: string, floorId: string) => {
-    const building = buildingSystemService.getBuilding(buildingId);
+    const building = integratedBuildingService.getBuilding(buildingId);
     const floor = building?.floors.find(f => f.id === floorId);
     return {
       roomsCount: floor?.rooms.length || 0,
@@ -186,7 +201,7 @@ export function Locations() {
   };
 
   const handleSelectBuilding = (buildingId: string) => {
-    buildingSystemService.setCurrentBuilding(buildingId);
+    integratedBuildingService.setCurrentBuilding(buildingId);
   };
 
   return (
@@ -242,7 +257,7 @@ export function Locations() {
           buildings.map((building) => {
             const stats = getBuildingStats(building);
             const isExpanded = expandedBuildings.has(building.id);
-            const isCurrent = buildingSystemService.getCurrentBuildingId() === building.id;
+            const isCurrent = integratedBuildingService.getCurrentBuildingId() === building.id;
 
             return (
               <Card key={building.id} className={`overflow-hidden ${isCurrent ? 'border-blue-500 border-2' : ''}`}>
