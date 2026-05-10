@@ -14,12 +14,12 @@ TRUNCATE TABLE users CASCADE;
 
 -- Создание пользователей
 -- Пароли захешированы с помощью BCrypt (все пароли = "password")
--- Hash: $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy
+-- Hash: $2a$10$7xJcLKNFIQM7aMTnacmEbe1ceyUkh5m/dDPhYEaHGnsFZx.cQ/DPK
 INSERT INTO users (username, password_hash, email, full_name, enabled) VALUES
-('admin', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'admin@building.com', 'Администратор Системы', true),
-('manager', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'manager@building.com', 'Менеджер Здания', true),
-('operator', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'operator@building.com', 'Оператор Систем', true),
-('viewer', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'viewer@building.com', 'Наблюдатель', true);
+('admin', '$2a$10$7xJcLKNFIQM7aMTnacmEbe1ceyUkh5m/dDPhYEaHGnsFZx.cQ/DPK', 'admin@building.com', 'Администратор Системы', true),
+('manager', '$2a$10$7xJcLKNFIQM7aMTnacmEbe1ceyUkh5m/dDPhYEaHGnsFZx.cQ/DPK', 'manager@building.com', 'Менеджер Здания', true),
+('operator', '$2a$10$7xJcLKNFIQM7aMTnacmEbe1ceyUkh5m/dDPhYEaHGnsFZx.cQ/DPK', 'operator@building.com', 'Оператор Систем', true),
+('viewer', '$2a$10$7xJcLKNFIQM7aMTnacmEbe1ceyUkh5m/dDPhYEaHGnsFZx.cQ/DPK', 'viewer@building.com', 'Наблюдатель', true);
 
 -- Назначение ролей пользователям
 INSERT INTO user_roles (user_id, role_id)

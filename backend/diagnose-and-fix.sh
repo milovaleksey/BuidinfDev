@@ -54,7 +54,7 @@ else
     echo ""
     echo "Проверка хеша пароля admin..."
     ADMIN_HASH=$(sudo -u postgres psql -d building_management -t -A -c "SELECT password_hash FROM users WHERE username='admin' LIMIT 1;")
-    EXPECTED_HASH='$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy'
+    EXPECTED_HASH='$2a$10$7xJcLKNFIQM7aMTnacmEbe1ceyUkh5m/dDPhYEaHGnsFZx.cQ/DPK'
     
     if [ "$ADMIN_HASH" = "$EXPECTED_HASH" ]; then
         echo -e "${GREEN}✅ Хеш пароля корректный${NC}"
