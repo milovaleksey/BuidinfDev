@@ -1,6 +1,22 @@
 // API Configuration
+// Автоматическое определение URL бэкенда
+const getBaseUrl = () => {
+  // Если есть переменная окружения - используем её
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+  
+  // В продакшене используем текущий хост
+  if (import.meta.env.PROD) {
+    return `${window.location.protocol}//${window.location.hostname}:8080/api`;
+  }
+  
+  // В разработке используем localhost
+  return 'http://localhost:8080/api';
+};
+
 export const API_CONFIG = {
-  BASE_URL: 'http://localhost:8080/api',
+  BASE_URL: getBaseUrl(),
   TIMEOUT: 10000,
 };
 

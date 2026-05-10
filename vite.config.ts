@@ -31,6 +31,13 @@ export default defineConfig({
     },
   },
 
+  // Настройка сервера для доступа по сети
+  server: {
+    host: '0.0.0.0', // Слушать на всех интерфейсах
+    port: 5173,
+    strictPort: true,
+  },
+
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ['**/*.svg', '**/*.csv'],
 })
