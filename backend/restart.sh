@@ -1,27 +1,29 @@
 #!/bin/bash
 
-# Цвета
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
+echo "🔄 Остановка Spring Boot приложения..."
+pkill -f "building-management-0.0.1-SNAPSHOT.jar" || echo "Приложение не запущено"
 
-echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${BLUE}🔄 Перезапуск Backend${NC}"
-echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo "⏳ Ожидание завершения процесса..."
+sleep 3
+
+echo "🔨 Сборка проекта..."
+cd /root/backend
+./mvnw clean package -DskipTests
+
+if [ $? -ne 0 ]; then
+    echo "❌ Ошибка сборки!"
+    exit 1
+fi
+
+echo "🚀 Запуск приложения в фоновом режиме..."
+nohup java -jar target/building-management-0.0.1-SNAPSHOT.jar > /root/backend/app.log 2>&1 &
+
+echo "✅ Приложение запущено!"
+echo "📋 Логи: tail -f /root/backend/app.log"
 echo ""
+echo "⏳ Ожидание старта сервера (10 секунд)..."
+sleep 10
 
-# Остановка старого процесса
-echo -n "🛑 Остановка старого процесса... "
-pkill -f "spring-boot:run" 2>/dev/null
-pkill -f "building-management" 2>/dev/null
-sleep 2
-echo -e "${GREEN}✅${NC}"
-
-# Запуск нового
 echo ""
-echo -e "${YELLOW}🚀 Запуск Backend...${NC}"
-echo ""
-
-./start.sh
+echo "🔍 Проверка статуса:"
+curl -s http://localhost:8080/api/health || echo "Сервер еще не готов"
