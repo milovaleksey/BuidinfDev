@@ -10,7 +10,7 @@ cd backend
 ./start.sh
 
 # В отдельном терминале - получить токен
-TOKEN=$(curl -s -X POST http://localhost:8080/auth/login \
+TOKEN=$(curl -s -X POST PGPASSWORD=postgres psql -h localhost -U postgres -d building_management -f init-data.sql \
   -H "Content-Type: application/json" \
   -d '{"username":"admin","password":"admin123"}' | jq -r '.token')
 

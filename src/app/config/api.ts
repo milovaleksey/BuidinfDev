@@ -6,13 +6,14 @@ const getBaseUrl = () => {
     return import.meta.env.VITE_API_URL;
   }
   
-  // В продакшене используем текущий хост
-  if (import.meta.env.PROD) {
-    return `${window.location.protocol}//${window.location.hostname}:8080/api`;
-  }
+  // Автоматически определяем по текущему хосту
+  // Работает и в dev, и в prod режиме
+  const hostname = window.location.hostname;
+  const protocol = window.location.protocol;
   
-  // В разработке используем localhost
-  return 'http://localhost:8080/api';
+  // Если это localhost, используем localhost
+  // Иначе используем текущий IP/хост
+  return `${protocol}//${hostname}:8080/api`;
 };
 
 export const API_CONFIG = {

@@ -1,0 +1,103 @@
+chunk-BH4GTE34.js?v=b3723294:21609 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+AuthService.ts:62 Login failed: AxiosError: Network Error
+    at XMLHttpRequest.handleError (axios.js?v=b3723294:1863:19)
+    at Axios.request (axios.js?v=b3723294:2650:41)
+    at async ApiClient.post (ApiClient.ts:67:40)
+    at async AuthService.login (AuthService.ts:38:39)
+    at async handleSubmit (LoginForm.tsx:23:23)
+login @ AuthService.ts:62
+await in login
+handleSubmit @ LoginForm.tsx:23
+callCallback2 @ chunk-BH4GTE34.js?v=b3723294:3680
+invokeGuardedCallbackDev @ chunk-BH4GTE34.js?v=b3723294:3705
+invokeGuardedCallback @ chunk-BH4GTE34.js?v=b3723294:3739
+invokeGuardedCallbackAndCatchFirstError @ chunk-BH4GTE34.js?v=b3723294:3742
+executeDispatch @ chunk-BH4GTE34.js?v=b3723294:7046
+processDispatchQueueItemsInOrder @ chunk-BH4GTE34.js?v=b3723294:7066
+processDispatchQueue @ chunk-BH4GTE34.js?v=b3723294:7075
+dispatchEventsForPlugins @ chunk-BH4GTE34.js?v=b3723294:7083
+(anonymous) @ chunk-BH4GTE34.js?v=b3723294:7206
+batchedUpdates$1 @ chunk-BH4GTE34.js?v=b3723294:18966
+batchedUpdates @ chunk-BH4GTE34.js?v=b3723294:3585
+dispatchEventForPluginEventSystem @ chunk-BH4GTE34.js?v=b3723294:7205
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-BH4GTE34.js?v=b3723294:5484
+dispatchEvent @ chunk-BH4GTE34.js?v=b3723294:5478
+dispatchDiscreteEvent @ chunk-BH4GTE34.js?v=b3723294:5455
+ApiClient.ts:67  POST http://localhost:8080/api/auth/login net::ERR_CONNECTION_REFUSED
+dispatchXhrRequest @ axios.js?v=b3723294:1933
+xhr @ axios.js?v=b3723294:1794
+dispatchRequest @ axios.js?v=b3723294:2525
+Promise.then
+_request @ axios.js?v=b3723294:2761
+request @ axios.js?v=b3723294:2646
+httpMethod @ axios.js?v=b3723294:2809
+wrap @ axios.js?v=b3723294:8
+post @ ApiClient.ts:67
+login @ AuthService.ts:38
+handleSubmit @ LoginForm.tsx:23
+callCallback2 @ chunk-BH4GTE34.js?v=b3723294:3680
+invokeGuardedCallbackDev @ chunk-BH4GTE34.js?v=b3723294:3705
+invokeGuardedCallback @ chunk-BH4GTE34.js?v=b3723294:3739
+invokeGuardedCallbackAndCatchFirstError @ chunk-BH4GTE34.js?v=b3723294:3742
+executeDispatch @ chunk-BH4GTE34.js?v=b3723294:7046
+processDispatchQueueItemsInOrder @ chunk-BH4GTE34.js?v=b3723294:7066
+processDispatchQueue @ chunk-BH4GTE34.js?v=b3723294:7075
+dispatchEventsForPlugins @ chunk-BH4GTE34.js?v=b3723294:7083
+(anonymous) @ chunk-BH4GTE34.js?v=b3723294:7206
+batchedUpdates$1 @ chunk-BH4GTE34.js?v=b3723294:18966
+batchedUpdates @ chunk-BH4GTE34.js?v=b3723294:3585
+dispatchEventForPluginEventSystem @ chunk-BH4GTE34.js?v=b3723294:7205
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-BH4GTE34.js?v=b3723294:5484
+dispatchEvent @ chunk-BH4GTE34.js?v=b3723294:5478
+dispatchDiscreteEvent @ chunk-BH4GTE34.js?v=b3723294:5455
+AuthService.ts:62 Login failed: AxiosError: Network Error
+    at XMLHttpRequest.handleError (axios.js?v=b3723294:1863:19)
+    at Axios.request (axios.js?v=b3723294:2650:41)
+    at async ApiClient.post (ApiClient.ts:67:40)
+    at async AuthService.login (AuthService.ts:38:39)
+    at async handleSubmit (LoginForm.tsx:23:23)
+login @ AuthService.ts:62
+await in login
+handleSubmit @ LoginForm.tsx:23
+callCallback2 @ chunk-BH4GTE34.js?v=b3723294:3680
+invokeGuardedCallbackDev @ chunk-BH4GTE34.js?v=b3723294:3705
+invokeGuardedCallback @ chunk-BH4GTE34.js?v=b3723294:3739
+invokeGuardedCallbackAndCatchFirstError @ chunk-BH4GTE34.js?v=b3723294:3742
+executeDispatch @ chunk-BH4GTE34.js?v=b3723294:7046
+processDispatchQueueItemsInOrder @ chunk-BH4GTE34.js?v=b3723294:7066
+processDispatchQueue @ chunk-BH4GTE34.js?v=b3723294:7075
+dispatchEventsForPlugins @ chunk-BH4GTE34.js?v=b3723294:7083
+(anonymous) @ chunk-BH4GTE34.js?v=b3723294:7206
+batchedUpdates$1 @ chunk-BH4GTE34.js?v=b3723294:18966
+batchedUpdates @ chunk-BH4GTE34.js?v=b3723294:3585
+dispatchEventForPluginEventSystem @ chunk-BH4GTE34.js?v=b3723294:7205
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-BH4GTE34.js?v=b3723294:5484
+dispatchEvent @ chunk-BH4GTE34.js?v=b3723294:5478
+dispatchDiscreteEvent @ chunk-BH4GTE34.js?v=b3723294:5455
+ApiClient.ts:67  POST http://localhost:8080/api/auth/login net::ERR_CONNECTION_REFUSED
+dispatchXhrRequest @ axios.js?v=b3723294:1933
+xhr @ axios.js?v=b3723294:1794
+dispatchRequest @ axios.js?v=b3723294:2525
+Promise.then
+_request @ axios.js?v=b3723294:2761
+request @ axios.js?v=b3723294:2646
+httpMethod @ axios.js?v=b3723294:2809
+wrap @ axios.js?v=b3723294:8
+post @ ApiClient.ts:67
+login @ AuthService.ts:38
+handleSubmit @ LoginForm.tsx:23
+callCallback2 @ chunk-BH4GTE34.js?v=b3723294:3680
+invokeGuardedCallbackDev @ chunk-BH4GTE34.js?v=b3723294:3705
+invokeGuardedCallback @ chunk-BH4GTE34.js?v=b3723294:3739
+invokeGuardedCallbackAndCatchFirstError @ chunk-BH4GTE34.js?v=b3723294:3742
+executeDispatch @ chunk-BH4GTE34.js?v=b3723294:7046
+processDispatchQueueItemsInOrder @ chunk-BH4GTE34.js?v=b3723294:7066
+processDispatchQueue @ chunk-BH4GTE34.js?v=b3723294:7075
+dispatchEventsForPlugins @ chunk-BH4GTE34.js?v=b3723294:7083
+(anonymous) @ chunk-BH4GTE34.js?v=b3723294:7206
+batchedUpdates$1 @ chunk-BH4GTE34.js?v=b3723294:18966
+batchedUpdates @ chunk-BH4GTE34.js?v=b3723294:3585
+dispatchEventForPluginEventSystem @ chunk-BH4GTE34.js?v=b3723294:7205
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-BH4GTE34.js?v=b3723294:5484
+dispatchEvent @ chunk-BH4GTE34.js?v=b3723294:5478
+dispatchDiscreteEvent @ chunk-BH4GTE34.js?v=b3723294:5455
