@@ -30,6 +30,7 @@ public class NodeRedService {
                 .uri("/device/{id}/state", deviceId)
                 .retrieve()
                 .bodyToMono(Map.class)
+                .map(map -> (Map<String, Object>) map)
                 .timeout(Duration.ofMillis(timeout))
                 .doOnError(error -> log.error("Error fetching device state from Node-RED: {}", error.getMessage()));
     }
@@ -47,6 +48,7 @@ public class NodeRedService {
                 .bodyValue(payload)
                 .retrieve()
                 .bodyToMono(Map.class)
+                .map(map -> (Map<String, Object>) map)
                 .timeout(Duration.ofMillis(timeout))
                 .doOnError(error -> log.error("Error sending command to Node-RED: {}", error.getMessage()));
     }

@@ -137,19 +137,22 @@ public class ProxyController {
         // Добавить заголовки с информацией о пользователе
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
 
-        WebClient.RequestBodySpec requestSpec = nodeRedWebClient
-                .method(method)
+        WebClient.RequestBodyUriSpec requestBodyUriSpec = nodeRedWebClient.method(method);
+        WebClient.RequestBodySpec requestSpec = requestBodyUriSpec
                 .uri(path)
                 .header("X-User-Id", principal.getId().toString())
                 .header("X-User-Name", principal.getUsername())
                 .header("X-User-Roles", getRoles(authentication));
 
         // Добавить body если есть
+        WebClient.RequestHeadersSpec<?> headersSpec;
         if (body != null && !body.isEmpty()) {
-            requestSpec = requestSpec.bodyValue(body);
+            headersSpec = requestSpec.bodyValue(body);
+        } else {
+            headersSpec = requestSpec;
         }
 
-        return requestSpec
+        return headersSpec
                 .retrieve()
                 .toEntity(String.class)
                 .doOnSuccess(response -> log.debug("Node-RED response: {}", response.getStatusCode()))
