@@ -74,4 +74,15 @@ export const API_ENDPOINTS = {
     LIST: '/audit/logs',
     GET: (id: string) => `/audit/logs/${id}`,
   },
+  USERS: {
+    LIST: '/users',
+    GET: (id: string) => `/users/${id}`,
+    CREATE: '/users',
+    UPDATE: (id: string) => `/users/${id}`,
+    DELETE: (id: string) => `/users/${id}`,
+    TOGGLE_STATUS: (id: string) => `/users/${id}/toggle-status`,
+  },
+  ROLES: {
+    LIST: '/roles',
+  },
 };
