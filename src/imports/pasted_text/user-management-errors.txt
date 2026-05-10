@@ -1,0 +1,92 @@
+chunk-BH4GTE34.js?v=b3723294:21609 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+IntegratedBuildingService.ts:50 🔄 Загрузка данных из бэкенда...
+IntegratedBuildingService.ts:155 📦 Создана новая система зданий
+DataLoader.tsx:23 ✅ Данные загружены успешно
+MockMQTTService.ts:13 MQTT: Connected to broker (mock)
+MockMQTTService.ts:23 MQTT: Disconnected from broker
+DataLoader.tsx:23 ✅ Данные загружены успешно
+DataLoader.tsx:23 ✅ Данные загружены успешно
+:8080/api/users:1  Failed to load resource: the server responded with a status of 403 ()
+UserManagement.tsx:68 Failed to load data: AxiosError: Request failed with status code 403
+    at settle (axios.js?v=b3723294:1426:12)
+    at XMLHttpRequest.onloadend (axios.js?v=b3723294:1827:7)
+    at Axios.request (axios.js?v=b3723294:2650:41)
+    at async ApiClient.get (ApiClient.ts:62:40)
+    at async Promise.all (index 0)
+    at async loadData (UserManagement.tsx:61:38)
+loadData @ UserManagement.tsx:68
+:8080/api/roles:1  Failed to load resource: the server responded with a status of 403 ()
+MockMQTTService.ts:13 MQTT: Connected to broker (mock)
+MockMQTTService.ts:23 MQTT: Disconnected from broker
+:8080/api/users:1  Failed to load resource: the server responded with a status of 403 ()
+UserManagement.tsx:68 Failed to load data: AxiosError: Request failed with status code 403
+    at settle (axios.js?v=b3723294:1426:12)
+    at XMLHttpRequest.onloadend (axios.js?v=b3723294:1827:7)
+    at Axios.request (axios.js?v=b3723294:2650:41)
+    at async ApiClient.get (ApiClient.ts:62:40)
+    at async Promise.all (index 0)
+    at async loadData (UserManagement.tsx:61:38)
+loadData @ UserManagement.tsx:68
+:8080/api/roles:1  Failed to load resource: the server responded with a status of 403 ()
+MockMQTTService.ts:13 MQTT: Connected to broker (mock)
+MockMQTTService.ts:23 MQTT: Disconnected from broker
+:8080/api/users:1  Failed to load resource: the server responded with a status of 403 ()
+UserManagement.tsx:68 Failed to load data: AxiosError: Request failed with status code 403
+    at settle (axios.js?v=b3723294:1426:12)
+    at XMLHttpRequest.onloadend (axios.js?v=b3723294:1827:7)
+    at Axios.request (axios.js?v=b3723294:2650:41)
+    at async ApiClient.get (ApiClient.ts:62:40)
+    at async Promise.all (index 0)
+    at async loadData (UserManagement.tsx:61:38)
+loadData @ UserManagement.tsx:68
+:8080/api/roles:1  Failed to load resource: the server responded with a status of 403 ()
+ApiClient.ts:67  POST http://10.81.0.60:8080/api/users 403 (Forbidden)
+dispatchXhrRequest @ axios.js?v=b3723294:1933
+xhr @ axios.js?v=b3723294:1794
+dispatchRequest @ axios.js?v=b3723294:2525
+Promise.then
+_request @ axios.js?v=b3723294:2761
+request @ axios.js?v=b3723294:2646
+httpMethod @ axios.js?v=b3723294:2809
+wrap @ axios.js?v=b3723294:8
+post @ ApiClient.ts:67
+createUser @ UserManagementService.ts:16
+handleSaveUser @ UserManagement.tsx:132
+callCallback2 @ chunk-BH4GTE34.js?v=b3723294:3680
+invokeGuardedCallbackDev @ chunk-BH4GTE34.js?v=b3723294:3705
+invokeGuardedCallback @ chunk-BH4GTE34.js?v=b3723294:3739
+invokeGuardedCallbackAndCatchFirstError @ chunk-BH4GTE34.js?v=b3723294:3742
+executeDispatch @ chunk-BH4GTE34.js?v=b3723294:7046
+processDispatchQueueItemsInOrder @ chunk-BH4GTE34.js?v=b3723294:7066
+processDispatchQueue @ chunk-BH4GTE34.js?v=b3723294:7075
+dispatchEventsForPlugins @ chunk-BH4GTE34.js?v=b3723294:7083
+(anonymous) @ chunk-BH4GTE34.js?v=b3723294:7206
+batchedUpdates$1 @ chunk-BH4GTE34.js?v=b3723294:18966
+batchedUpdates @ chunk-BH4GTE34.js?v=b3723294:3585
+dispatchEventForPluginEventSystem @ chunk-BH4GTE34.js?v=b3723294:7205
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-BH4GTE34.js?v=b3723294:5484
+dispatchEvent @ chunk-BH4GTE34.js?v=b3723294:5478
+dispatchDiscreteEvent @ chunk-BH4GTE34.js?v=b3723294:5455
+UserManagement.tsx:150 Failed to save user: AxiosError: Request failed with status code 403
+    at settle (axios.js?v=b3723294:1426:12)
+    at XMLHttpRequest.onloadend (axios.js?v=b3723294:1827:7)
+    at Axios.request (axios.js?v=b3723294:2650:41)
+    at async ApiClient.post (ApiClient.ts:67:40)
+    at async handleSaveUser (UserManagement.tsx:132:9)
+handleSaveUser @ UserManagement.tsx:150
+await in handleSaveUser
+callCallback2 @ chunk-BH4GTE34.js?v=b3723294:3680
+invokeGuardedCallbackDev @ chunk-BH4GTE34.js?v=b3723294:3705
+invokeGuardedCallback @ chunk-BH4GTE34.js?v=b3723294:3739
+invokeGuardedCallbackAndCatchFirstError @ chunk-BH4GTE34.js?v=b3723294:3742
+executeDispatch @ chunk-BH4GTE34.js?v=b3723294:7046
+processDispatchQueueItemsInOrder @ chunk-BH4GTE34.js?v=b3723294:7066
+processDispatchQueue @ chunk-BH4GTE34.js?v=b3723294:7075
+dispatchEventsForPlugins @ chunk-BH4GTE34.js?v=b3723294:7083
+(anonymous) @ chunk-BH4GTE34.js?v=b3723294:7206
+batchedUpdates$1 @ chunk-BH4GTE34.js?v=b3723294:18966
+batchedUpdates @ chunk-BH4GTE34.js?v=b3723294:3585
+dispatchEventForPluginEventSystem @ chunk-BH4GTE34.js?v=b3723294:7205
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-BH4GTE34.js?v=b3723294:5484
+dispatchEvent @ chunk-BH4GTE34.js?v=b3723294:5478
+dispatchDiscreteEvent @ chunk-BH4GTE34.js?v=b3723294:5455
