@@ -15,27 +15,42 @@ echo ""
 echo "📦 Копирование проекта на $VM_USER@$VM_IP:$VM_PATH"
 echo ""
 
-# Создать временную директорию для копирования
-TEMP_DIR=$(mktemp -d)
-echo "Подготовка файлов в $TEMP_DIR..."
-
-# Копировать файлы проекта (исключая ненужные)
-rsync -av \
-  --exclude 'node_modules' \
-  --exclude 'target' \
-  --exclude '.git' \
-  --exclude 'dist' \
-  --exclude 'build' \
-  --exclude '.vite' \
-  --exclude 'logs' \
-  --exclude '.DS_Store' \
-  ./ "$TEMP_DIR/"
+# Проверка SSH доступа
+echo "🔐 Проверка SSH подключения..."
+ssh -o ConnectTimeout=5 -o BatchMode=yes "$VM_USER@$VM_IP" exit 2>/dev/null
+if [ $? -ne 0 ]; then
+    echo "⚠️  SSH подключение требует пароль или ключ"
+    echo "Продолжаем с запросом пароля..."
+fi
 
 echo ""
-echo "📤 Загрузка на виртуалку..."
+echo "📤 Создание директории на виртуалке..."
+# Создать директорию на удаленном сервере
+ssh "$VM_USER@$VM_IP" "mkdir -p $VM_PATH"
 
-# Копирование на виртуалку
-scp -r "$TEMP_DIR" "$VM_USER@$VM_IP:$VM_PATH"
+if [ $? -ne 0 ]; then
+    echo "❌ Не удалось создать директорию на виртуалке"
+    echo "Проверьте SSH доступ: ssh $VM_USER@$VM_IP"
+    exit 1
+fi
+
+echo "📤 Загрузка файлов на виртуалку..."
+
+# Копирование на виртуалку (rsync удобнее чем scp)
+if command -v rsync &> /dev/null; then
+    rsync -avz --progress \
+      --exclude 'node_modules' \
+      --exclude 'target' \
+      --exclude '.git' \
+      --exclude 'dist' \
+      --exclude 'build' \
+      --exclude '.vite' \
+      --exclude 'logs' \
+      ./ "$VM_USER@$VM_IP:$VM_PATH/"
+else
+    # Fallback на scp если rsync не установлен
+    scp -r "$TEMP_DIR/"* "$VM_USER@$VM_IP:$VM_PATH/"
+fi
 
 if [ $? -eq 0 ]; then
     echo "✅ Проект успешно скопирован на виртуалку"
@@ -43,9 +58,6 @@ else
     echo "❌ Ошибка при копировании"
     exit 1
 fi
-
-# Удалить временную директорию
-rm -rf "$TEMP_DIR"
 
 echo ""
 echo "╔════════════════════════════════════════════════════════╗"
