@@ -3,9 +3,9 @@ import { apiClient } from './ApiClient';
 import { API_ENDPOINTS } from '../config/api';
 
 interface LoginResponse {
-  accessToken: string;
-  tokenType: string;
-  userId: number;
+  token: string;  // Бэкенд возвращает "token", а не "accessToken"
+  type: string;   // "Bearer"
+  id: number;     // Бэкенд возвращает "id", а не "userId"
   username: string;
   email: string;
   roles: string[];
@@ -41,12 +41,12 @@ class AuthService {
       });
 
       // Save token
-      apiClient.setToken(response.accessToken);
+      apiClient.setToken(response.token);
 
       // Map backend response to frontend User type
       const role = this.mapBackendRole(response.roles);
       this.currentUser = {
-        id: response.userId.toString(),
+        id: response.id.toString(),
         username: response.username,
         email: response.email,
         role: role,
@@ -65,9 +65,10 @@ class AuthService {
   }
 
   private mapBackendRole(roles: string[]): UserRole {
-    if (roles.includes('ROLE_ADMIN')) return 'admin';
-    if (roles.includes('ROLE_MANAGER')) return 'manager';
-    if (roles.includes('ROLE_OPERATOR')) return 'operator';
+    // Бэкенд возвращает роли БЕЗ префикса ROLE_ (например: ["ADMIN"] вместо ["ROLE_ADMIN"])
+    if (roles.includes('ADMIN')) return 'admin';
+    if (roles.includes('MANAGER')) return 'manager';
+    if (roles.includes('OPERATOR')) return 'operator';
     return 'viewer';
   }
 
