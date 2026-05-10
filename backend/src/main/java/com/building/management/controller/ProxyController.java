@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -17,11 +18,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Proxy Controller - проксирует все запросы к Node-RED
- * с проверкой авторизации и прав доступа
+ * Proxy Controller - проксирует команды управления и запросы отчетов на Node-RED
+ * Backend отвечает за авторизацию, структуру проекта и логирование
+ * Node-RED отвечает за управление устройствами через MQTT и генерацию отчетов
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/nodered")
 @RequiredArgsConstructor
 @Slf4j
 @CrossOrigin(origins = "*")
@@ -30,188 +32,114 @@ public class ProxyController {
     private final WebClient nodeRedWebClient;
 
     /**
-     * Проксирование GET запросов
+     * Управление устройствами - отправка команд через Node-RED на MQTT
+     * POST /api/nodered/control/device/{deviceId}
      */
-    @GetMapping("/buildings/**")
-    public Mono<ResponseEntity<String>> proxyGetBuildings(
+    @PostMapping("/control/device/{deviceId}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'OPERATOR')")
+    public Mono<ResponseEntity<String>> controlDevice(
+            @PathVariable Long deviceId,
+            @RequestBody(required = false) String command,
             HttpServletRequest request,
             Authentication authentication
     ) {
-        return proxyRequest(request, authentication, HttpMethod.GET, null);
-    }
-
-    @GetMapping("/floors/**")
-    public Mono<ResponseEntity<String>> proxyGetFloors(
-            HttpServletRequest request,
-            Authentication authentication
-    ) {
-        return proxyRequest(request, authentication, HttpMethod.GET, null);
-    }
-
-    @GetMapping("/rooms/**")
-    public Mono<ResponseEntity<String>> proxyGetRooms(
-            HttpServletRequest request,
-            Authentication authentication
-    ) {
-        return proxyRequest(request, authentication, HttpMethod.GET, null);
-    }
-
-    @GetMapping("/devices/**")
-    public Mono<ResponseEntity<String>> proxyGetDevices(
-            HttpServletRequest request,
-            Authentication authentication
-    ) {
-        return proxyRequest(request, authentication, HttpMethod.GET, null);
+        log.info("Device control command for device {} by user {}", deviceId, getUserName(authentication));
+        return proxyRequest("/control/device/" + deviceId, authentication, HttpMethod.POST, command);
     }
 
     /**
-     * Проксирование POST запросов
+     * Получение состояния устройства из Node-RED
+     * GET /api/nodered/state/device/{deviceId}
      */
-    @PostMapping("/buildings/**")
-    public Mono<ResponseEntity<String>> proxyPostBuildings(
-            @RequestBody(required = false) String body,
+    @GetMapping("/state/device/{deviceId}")
+    public Mono<ResponseEntity<String>> getDeviceState(
+            @PathVariable Long deviceId,
             HttpServletRequest request,
             Authentication authentication
     ) {
-        checkWritePermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.POST, body);
-    }
-
-    @PostMapping("/floors/**")
-    public Mono<ResponseEntity<String>> proxyPostFloors(
-            @RequestBody(required = false) String body,
-            HttpServletRequest request,
-            Authentication authentication
-    ) {
-        checkWritePermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.POST, body);
-    }
-
-    @PostMapping("/rooms/**")
-    public Mono<ResponseEntity<String>> proxyPostRooms(
-            @RequestBody(required = false) String body,
-            HttpServletRequest request,
-            Authentication authentication
-    ) {
-        checkWritePermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.POST, body);
-    }
-
-    @PostMapping("/devices/**")
-    public Mono<ResponseEntity<String>> proxyPostDevices(
-            @RequestBody(required = false) String body,
-            HttpServletRequest request,
-            Authentication authentication
-    ) {
-        checkWritePermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.POST, body);
+        return proxyRequest("/state/device/" + deviceId, authentication, HttpMethod.GET, null);
     }
 
     /**
-     * Проксирование PUT запросов
+     * Получение отчета по зданию
+     * GET /api/nodered/report/building/{buildingId}
      */
-    @PutMapping("/buildings/**")
-    public Mono<ResponseEntity<String>> proxyPutBuildings(
-            @RequestBody(required = false) String body,
+    @GetMapping("/report/building/{buildingId}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    public Mono<ResponseEntity<String>> getBuildingReport(
+            @PathVariable Long buildingId,
+            @RequestParam(required = false) String reportType,
+            @RequestParam(required = false) String startDate,
+            @RequestParam(required = false) String endDate,
             HttpServletRequest request,
             Authentication authentication
     ) {
-        checkWritePermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.PUT, body);
-    }
-
-    @PutMapping("/floors/**")
-    public Mono<ResponseEntity<String>> proxyPutFloors(
-            @RequestBody(required = false) String body,
-            HttpServletRequest request,
-            Authentication authentication
-    ) {
-        checkWritePermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.PUT, body);
-    }
-
-    @PutMapping("/rooms/**")
-    public Mono<ResponseEntity<String>> proxyPutRooms(
-            @RequestBody(required = false) String body,
-            HttpServletRequest request,
-            Authentication authentication
-    ) {
-        checkWritePermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.PUT, body);
-    }
-
-    @PutMapping("/devices/**")
-    public Mono<ResponseEntity<String>> proxyPutDevices(
-            @RequestBody(required = false) String body,
-            HttpServletRequest request,
-            Authentication authentication
-    ) {
-        checkWritePermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.PUT, body);
+        String queryString = request.getQueryString();
+        String path = "/report/building/" + buildingId;
+        String fullPath = queryString != null ? path + "?" + queryString : path;
+        
+        return proxyRequest(fullPath, authentication, HttpMethod.GET, null);
     }
 
     /**
-     * Проксирование DELETE запросов
+     * Получение отчета по системе
+     * GET /api/nodered/report/system/{systemType}
      */
-    @DeleteMapping("/buildings/**")
-    public Mono<ResponseEntity<String>> proxyDeleteBuildings(
+    @GetMapping("/report/system/{systemType}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    public Mono<ResponseEntity<String>> getSystemReport(
+            @PathVariable String systemType,
+            @RequestParam(required = false) String startDate,
+            @RequestParam(required = false) String endDate,
             HttpServletRequest request,
             Authentication authentication
     ) {
-        checkAdminPermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.DELETE, null);
+        String queryString = request.getQueryString();
+        String path = "/report/system/" + systemType;
+        String fullPath = queryString != null ? path + "?" + queryString : path;
+        
+        return proxyRequest(fullPath, authentication, HttpMethod.GET, null);
     }
 
-    @DeleteMapping("/floors/**")
-    public Mono<ResponseEntity<String>> proxyDeleteFloors(
+    /**
+     * Произвольный проксирующий запрос к Node-RED
+     * Для расширяемости системы
+     */
+    @RequestMapping(value = "/**", method = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+    public Mono<ResponseEntity<String>> proxyGeneric(
+            @RequestBody(required = false) String body,
             HttpServletRequest request,
             Authentication authentication
     ) {
-        checkAdminPermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.DELETE, null);
-    }
-
-    @DeleteMapping("/rooms/**")
-    public Mono<ResponseEntity<String>> proxyDeleteRooms(
-            HttpServletRequest request,
-            Authentication authentication
-    ) {
-        checkAdminPermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.DELETE, null);
-    }
-
-    @DeleteMapping("/devices/**")
-    public Mono<ResponseEntity<String>> proxyDeleteDevices(
-            HttpServletRequest request,
-            Authentication authentication
-    ) {
-        checkAdminPermission(authentication);
-        return proxyRequest(request, authentication, HttpMethod.DELETE, null);
+        String path = request.getRequestURI().replace("/api/nodered", "");
+        String queryString = request.getQueryString();
+        String fullPath = queryString != null ? path + "?" + queryString : path;
+        
+        HttpMethod method = HttpMethod.valueOf(request.getMethod());
+        
+        log.info("Generic proxy request {} {} by user {}", method, fullPath, getUserName(authentication));
+        
+        return proxyRequest(fullPath, authentication, method, body);
     }
 
     /**
      * Основной метод проксирования
      */
     private Mono<ResponseEntity<String>> proxyRequest(
-            HttpServletRequest request,
+            String path,
             Authentication authentication,
             HttpMethod method,
             String body
     ) {
-        // Получить путь без /api
-        String path = request.getRequestURI().replace("/api", "");
-        String queryString = request.getQueryString();
-        String fullPath = queryString != null ? path + "?" + queryString : path;
-
         log.info("Proxying {} {} to Node-RED for user {}",
-                method, fullPath, getUserName(authentication));
+                method, path, getUserName(authentication));
 
         // Добавить заголовки с информацией о пользователе
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
 
         WebClient.RequestBodySpec requestSpec = nodeRedWebClient
                 .method(method)
-                .uri(fullPath)
+                .uri(path)
                 .header("X-User-Id", principal.getId().toString())
                 .header("X-User-Name", principal.getUsername())
                 .header("X-User-Roles", getRoles(authentication));
@@ -230,37 +158,6 @@ public class ProxyController {
                         ResponseEntity.status(503)
                                 .body("{\"error\":\"Node-RED service unavailable: " + e.getMessage() + "\"}")
                 ));
-    }
-
-    /**
-     * Проверка прав на запись
-     */
-    private void checkWritePermission(Authentication authentication) {
-        if (authentication == null || !hasRole(authentication, "ADMIN", "MANAGER", "OPERATOR")) {
-            throw new SecurityException("Недостаточно прав для изменения данных");
-        }
-    }
-
-    /**
-     * Проверка прав администратора
-     */
-    private void checkAdminPermission(Authentication authentication) {
-        if (authentication == null || !hasRole(authentication, "ADMIN")) {
-            throw new SecurityException("Требуются права администратора");
-        }
-    }
-
-    /**
-     * Проверка наличия роли
-     */
-    private boolean hasRole(Authentication authentication, String... roles) {
-        for (String role : roles) {
-            if (authentication.getAuthorities().stream()
-                    .anyMatch(a -> a.getAuthority().equals("ROLE_" + role))) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface FloorRepository extends JpaRepository<Floor, Long> {
+    List<Floor> findByBuildingId(Long buildingId);
     List<Floor> findByBuildingIdOrderByFloorNumber(Long buildingId);
     Optional<Floor> findByBuildingIdAndFloorNumber(Long buildingId, Integer floorNumber);
 }

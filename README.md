@@ -1,6 +1,23 @@
 # 🏢 Building Management System
 
-Веб-портал для управления 5-этажным зданием с авторизацией, ролевой моделью и интеграцией систем СКУД, видеонаблюдения, отопления, освещения и кондиционирования.
+Веб-портал для управления зданиями с авторизацией, ролевой моделью и интеграцией систем СКУД, видеонаблюдения, отопления, освещения и кондиционирования. Поддержка неограниченного количества зданий с иерархической структурой.
+
+## 🎯 Новая архитектура
+
+Система построена по принципу разделения ответственности:
+
+- **Backend (Spring Boot + PostgreSQL)** - "Охранник" и хранитель структуры
+  - Авторизация, пользователи, роли
+  - Структура проекта (здания, этажи, помещения, устройства)
+  - Логирование всех действий
+  - Проксирование команд на Node-RED
+
+- **Node-RED** - Исполнитель команд и аналитик
+  - Управление устройствами через MQTT
+  - Интеграция с закрытыми сетями
+  - Генерация отчетов и аналитика
+
+📖 **Подробнее**: [ARCHITECTURE.md](backend/ARCHITECTURE.md)
 
 ## 🚀 Быстрый старт
 
@@ -16,26 +33,42 @@ chmod +x install-linux.sh
 См. подробные инструкции:
 - **Linux**: [LINUX_SETUP.md](LINUX_SETUP.md)
 - **Быстрый старт**: [QUICKSTART.md](QUICKSTART.md)
+- **Интеграция с Node-RED**: [QUICK_INTEGRATION_GUIDE.md](QUICK_INTEGRATION_GUIDE.md)
 
 ## 📋 Архитектура
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                     Frontend (React)                    │
-│              http://localhost:5173                      │
+│                  Frontend (React)                       │
+│            http://localhost:5173                        │
 └──────────────────────┬──────────────────────────────────┘
-                       │ REST API
+                       │ REST API + JWT
 ┌──────────────────────▼──────────────────────────────────┐
-│              Backend (Spring Boot)                      │
-│              http://localhost:8080/api                  │
-└──────────────────────┬──────────────────────────────────┘
-                       │
-        ┌──────────────┼──────────────┐
-        │              │              │
-┌───────▼─────┐  ┌────▼─────┐  ┌────▼─────┐
-│ PostgreSQL  │  │ Node-RED │  │   MQTT   │
-│   :5432     │  │  :1880   │  │ Devices  │
-└─────────────┘  └──────────┘  └──────────┘
+│           Backend (Spring Boot)                         │
+│         http://localhost:8080/api                       │
+│  • Авторизация • Структура • Логирование               │
+└─────────────┬────────────────────────┬──────────────────┘
+              │                        │ Proxy
+     ┌────────▼────────┐      ┌────────▼────────┐
+     │   PostgreSQL    │      │    Node-RED     │
+     │     :5432       │      │     :1880       │
+     │  • Users        │      │  • MQTT Control │
+     │  • Buildings    │      │  • Reports      │
+     │  • Devices      │      │  • Analytics    │
+     │  • Audit Log    │      └────────┬────────┘
+     └─────────────────┘               │
+                                       │ MQTT
+                              ┌────────▼────────┐
+                              │  MQTT Broker    │
+                              │  Mosquitto      │
+                              └────────┬────────┘
+                                       │
+                         ┌─────────────┴─────────────┐
+                         │                           │
+                    ┌────▼────┐                ┌────▼────┐
+                    │ Cameras │                │ Sensors │
+                    │ Lights  │                │ HVAC    │
+                    └─────────┘                └─────────┘
 ```
 
 ## 🛠️ Технологии
@@ -202,30 +235,74 @@ pnpm run dev -- --host 0.0.0.0
 
 ### Авторизация
 ```
-POST /api/auth/login       - Вход
-POST /api/auth/register    - Регистрация
-GET  /api/auth/me          - Текущий пользователь
-GET  /api/auth/health      - Проверка работы
+POST /auth/login           - Вход
+POST /auth/register        - Регистрация
+GET  /auth/me              - Текущий пользователь
 ```
 
-### Здания
+### Структура проекта (Backend)
+
+#### Здания
 ```
-GET    /api/buildings           - Список зданий
-GET    /api/buildings/{id}      - Детали здания
-POST   /api/buildings           - Создать здание
-PUT    /api/buildings/{id}      - Обновить здание
-DELETE /api/buildings/{id}      - Удалить здание
+GET    /buildings              - Список зданий
+GET    /buildings/{id}         - Детали здания
+POST   /buildings              - Создать здание (ADMIN, MANAGER)
+PUT    /buildings/{id}         - Обновить здание (ADMIN, MANAGER)
+DELETE /buildings/{id}         - Удалить здание (ADMIN)
+GET    /buildings/{id}/export  - Экспорт в JSON (ADMIN, MANAGER)
+POST   /buildings/import       - Импорт из JSON (ADMIN, MANAGER)
 ```
 
-### Устройства
+#### Этажи
 ```
-GET  /api/devices                       - Все устройства
-GET  /api/devices/{id}                  - Устройство
-POST /api/devices/{id}/command          - Отправить команду
-GET  /api/devices/building/{buildingId} - Устройства здания
+GET    /api/floors/building/{buildingId}  - Список этажей
+GET    /api/floors/{id}                   - Детали этажа
+POST   /api/floors/building/{buildingId}  - Создать этаж (ADMIN, MANAGER)
+PUT    /api/floors/{id}                   - Обновить этаж (ADMIN, MANAGER)
+DELETE /api/floors/{id}                   - Удалить этаж (ADMIN)
 ```
 
-Полная документация: [backend/README.md](backend/README.md)
+#### Помещения
+```
+GET    /api/rooms/floor/{floorId}  - Список помещений
+GET    /api/rooms/{id}             - Детали помещения
+POST   /api/rooms/floor/{floorId}  - Создать помещение (ADMIN, MANAGER)
+PUT    /api/rooms/{id}             - Обновить помещение (ADMIN, MANAGER)
+DELETE /api/rooms/{id}             - Удалить помещение (ADMIN)
+```
+
+#### Устройства
+```
+GET    /api/devices/room/{roomId}  - Список устройств
+GET    /api/devices/{id}           - Детали устройства
+POST   /api/devices/room/{roomId}  - Создать устройство (ADMIN, MANAGER)
+PUT    /api/devices/{id}           - Обновить устройство (ADMIN, MANAGER, OPERATOR)
+DELETE /api/devices/{id}           - Удалить устройство (ADMIN)
+PUT    /api/devices/{id}/state     - Обновить состояние (для Node-RED)
+```
+
+### Управление и отчеты (Node-RED через Backend Proxy)
+
+```
+POST /api/nodered/control/device/{deviceId}         - Управление устройством
+GET  /api/nodered/state/device/{deviceId}           - Получить состояние
+GET  /api/nodered/report/building/{buildingId}      - Отчет по зданию
+GET  /api/nodered/report/system/{systemType}        - Отчет по системе
+```
+
+### Логирование
+
+```
+GET /api/audit/recent                      - Последние 100 логов (ADMIN, MANAGER)
+GET /api/audit/user/{userId}               - Логи пользователя (ADMIN, MANAGER)
+GET /api/audit/entity/{type}/{id}          - Логи сущности (ADMIN, MANAGER)
+GET /api/audit/period?start=...&end=...    - Логи за период (ADMIN, MANAGER)
+```
+
+Полная документация:
+- [backend/ARCHITECTURE.md](backend/ARCHITECTURE.md) - Архитектура системы
+- [QUICK_INTEGRATION_GUIDE.md](QUICK_INTEGRATION_GUIDE.md) - Интеграция с Node-RED
+- [NODE_RED_EXAMPLES.md](NODE_RED_EXAMPLES.md) - Примеры Node-RED flows
 
 ## 🐳 Docker (TODO)
 
