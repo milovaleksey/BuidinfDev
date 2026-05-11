@@ -16,8 +16,17 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         
-        // Разрешаем все источники для разработки
-        configuration.setAllowedOriginPatterns(List.of("*"));
+        // Разрешаем конкретные источники для разработки
+        // Важно: нельзя использовать "*" вместе с credentials=true!
+        configuration.setAllowedOrigins(Arrays.asList(
+            "http://localhost:5173",  // Vite dev server
+            "http://localhost:5174",  // Альтернативный порт
+            "http://localhost:3000",  // React/CRA
+            "http://localhost:8080",  // Если фронт на 8080
+            "http://127.0.0.1:5173",
+            "http://127.0.0.1:5174",
+            "http://127.0.0.1:3000"
+        ));
         
         // Разрешаем все HTTP методы
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"));
