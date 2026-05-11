@@ -1,0 +1,301 @@
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-11T12:48:20.565+05:00  INFO 5773 --- [           main] c.b.m.BuildingManagementApplication      : Starting BuildingManagementApplication using Java 17.0.18 with PID 5773 (/home/srvadmin/BuidinfDev/backend/target/classes started by root in /home/srvadmin/BuidinfDev/backend)
+2026-05-11T12:48:20.567+05:00 DEBUG 5773 --- [           main] c.b.m.BuildingManagementApplication      : Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-11T12:48:20.569+05:00  INFO 5773 --- [           main] c.b.m.BuildingManagementApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-05-11T12:48:21.142+05:00  INFO 5773 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-11T12:48:21.265+05:00  INFO 5773 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 118 ms. Found 9 JPA repository interfaces.
+2026-05-11T12:48:21.721+05:00  INFO 5773 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-11T12:48:21.729+05:00  INFO 5773 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-11T12:48:21.730+05:00  INFO 5773 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-11T12:48:21.766+05:00  INFO 5773 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2026-05-11T12:48:21.767+05:00  INFO 5773 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1153 ms
+2026-05-11T12:48:21.818+05:00  INFO 5773 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-11T12:48:22.016+05:00  INFO 5773 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@9e02f84
+2026-05-11T12:48:22.017+05:00  INFO 5773 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-11T12:48:22.065+05:00  INFO 5773 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-11T12:48:22.093+05:00  INFO 5773 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-11T12:48:22.112+05:00  INFO 5773 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-11T12:48:22.255+05:00  INFO 5773 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-11T12:48:22.290+05:00  WARN 5773 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-11T12:48:23.112+05:00  INFO 5773 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-11T12:48:23.277+05:00  INFO 5773 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-11T12:48:23.521+05:00 DEBUG 5773 --- [           main] c.b.m.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
+2026-05-11T12:48:23.692+05:00  INFO 5773 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-11T12:48:24.265+05:00  WARN 5773 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-11T12:48:24.411+05:00 DEBUG 5773 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 51 mappings in 'requestMappingHandlerMapping'
+2026-05-11T12:48:24.501+05:00 DEBUG 5773 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-05-11T12:48:24.549+05:00  INFO 5773 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@69a61267, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@795ef208, org.springframework.security.web.context.SecurityContextHolderFilter@7170da18, org.springframework.security.web.header.HeaderWriterFilter@251ed676, org.springframework.web.filter.CorsFilter@673d73da, org.springframework.security.web.authentication.logout.LogoutFilter@2cfc4475, com.building.management.security.JwtAuthenticationFilter@213bd66a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1b61c1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3a571d3e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5125558b, org.springframework.security.web.session.SessionManagementFilter@265ef3d0, org.springframework.security.web.access.ExceptionTranslationFilter@50ade311, org.springframework.security.web.access.intercept.AuthorizationFilter@3c2654e]
+2026-05-11T12:48:24.636+05:00 DEBUG 5773 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-05-11T12:48:24.667+05:00 DEBUG 5773 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-05-11T12:48:24.814+05:00  INFO 5773 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2026-05-11T12:48:24.824+05:00  INFO 5773 --- [           main] c.b.m.BuildingManagementApplication      : Started BuildingManagementApplication in 4.534 seconds (process running for 4.791)
+2026-05-11T12:48:42.621+05:00  INFO 5773 --- [0.0-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-11T12:48:42.621+05:00  INFO 5773 --- [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-11T12:48:42.621+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2026-05-11T12:48:42.621+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2026-05-11T12:48:42.621+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2026-05-11T12:48:42.622+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@18f7a872
+2026-05-11T12:48:42.623+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@62cad0e8
+2026-05-11T12:48:42.623+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-05-11T12:48:42.623+05:00  INFO 5773 --- [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-05-11T12:48:42.635+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2026-05-11T12:48:42.646+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-05-11T12:48:42.647+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /auth/login
+2026-05-11T12:48:42.649+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/api/auth/login", parameters={}
+2026-05-11T12:48:42.650+05:00 DEBUG 5773 --- [0.0-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.building.management.controller.AuthController#login(LoginRequest)
+2026-05-11T12:48:42.703+05:00 DEBUG 5773 --- [0.0-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [LoginRequest(username=admin, password=password)]
+2026-05-11T12:48:42.851+05:00 DEBUG 5773 --- [0.0-8080-exec-1] c.b.m.security.CustomUserDetailsService  : 🔍 Loading user by username: admin
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.full_name,
+        u1_0.password_hash,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.username=?
+Hibernate: 
+    select
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.description,
+        r1_1.name 
+    from
+        user_roles r1_0 
+    join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    where
+        r1_0.user_id=?
+2026-05-11T12:48:42.933+05:00 DEBUG 5773 --- [0.0-8080-exec-1] c.b.m.security.CustomUserDetailsService  : ✅ User found: id=17, username=admin, enabled=true
+2026-05-11T12:48:42.934+05:00 DEBUG 5773 --- [0.0-8080-exec-1] c.b.m.security.CustomUserDetailsService  : 🔐 Password hash from DB: $2a$10$7xJcLKNFIQM7aMTnacmEbe1ceyUkh5m/dDPhYEaHGnsFZx.cQ/DPK
+2026-05-11T12:48:42.934+05:00 DEBUG 5773 --- [0.0-8080-exec-1] c.b.m.security.CustomUserDetailsService  : 👥 User has 1 roles
+2026-05-11T12:48:43.047+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2026-05-11T12:48:43.124+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-05-11T12:48:43.126+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [JwtResponse(token=eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIxNyIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlcyI6IlJPTEVfQ (truncated)...]
+2026-05-11T12:48:43.132+05:00 DEBUG 5773 --- [0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-11T12:48:43.204+05:00 DEBUG 5773 --- [0.0-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /buildings
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.full_name,
+        u1_0.password_hash,
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.description,
+        r1_1.name,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    left join
+        user_roles r1_0 
+            on u1_0.id=r1_0.user_id 
+    left join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    where
+        u1_0.id=?
+2026-05-11T12:48:43.245+05:00 DEBUG 5773 --- [0.0-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /buildings
+2026-05-11T12:48:43.246+05:00 DEBUG 5773 --- [0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/api/buildings", parameters={}
+2026-05-11T12:48:43.246+05:00 DEBUG 5773 --- [0.0-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.building.management.controller.BuildingController#getAllBuildings()
+Hibernate: 
+    select
+        b1_0.id,
+        b1_0.address,
+        b1_0.config,
+        b1_0.created_at,
+        b1_0.created_by,
+        b1_0.floors_count,
+        b1_0.name,
+        b1_0.updated_at 
+    from
+        buildings b1_0
+2026-05-11T12:48:43.261+05:00 DEBUG 5773 --- [0.0-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-05-11T12:48:43.264+05:00 DEBUG 5773 --- [0.0-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[BuildingDto(id=8, name=Главный офис, address=ул. Примерная, д. 1, Москва, floorsCount=5, config={ye (truncated)...]
+2026-05-11T12:48:43.269+05:00 DEBUG 5773 --- [0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-11T12:49:08.237+05:00 DEBUG 5773 --- [0.0-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /users
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.full_name,
+        u1_0.password_hash,
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.description,
+        r1_1.name,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    left join
+        user_roles r1_0 
+            on u1_0.id=r1_0.user_id 
+    left join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    where
+        u1_0.id=?
+2026-05-11T12:49:08.245+05:00 DEBUG 5773 --- [0.0-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /users
+2026-05-11T12:49:08.245+05:00 DEBUG 5773 --- [0.0-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/users", parameters={}
+2026-05-11T12:49:08.245+05:00 DEBUG 5773 --- [0.0-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.building.management.controller.UserController#getAllUsers()
+2026-05-11T12:49:08.246+05:00 DEBUG 5773 --- [0.0-8080-exec-3] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.building.management.controller.UserController.getAllUsers(); target is of class [com.building.management.controller.UserController]
+2026-05-11T12:49:08.265+05:00 DEBUG 5773 --- [0.0-8080-exec-3] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.building.management.controller.UserController.getAllUsers(); target is of class [com.building.management.controller.UserController]
+2026-05-11T12:49:08.265+05:00  INFO 5773 --- [0.0-8080-exec-3] c.b.m.controller.UserController          : GET /api/users - Fetching all users
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.full_name,
+        u1_0.password_hash,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+Hibernate: 
+    select
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.description,
+        r1_1.name 
+    from
+        user_roles r1_0 
+    join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    where
+        r1_0.user_id=?
+Hibernate: 
+    select
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.description,
+        r1_1.name 
+    from
+        user_roles r1_0 
+    join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    where
+        r1_0.user_id=?
+Hibernate: 
+    select
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.description,
+        r1_1.name 
+    from
+        user_roles r1_0 
+    join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    where
+        r1_0.user_id=?
+Hibernate: 
+    select
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.description,
+        r1_1.name 
+    from
+        user_roles r1_0 
+    join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    where
+        r1_0.user_id=?
+Hibernate: 
+    select
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.description,
+        r1_1.name 
+    from
+        user_roles r1_0 
+    join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    where
+        r1_0.user_id=?
+Hibernate: 
+    select
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.description,
+        r1_1.name 
+    from
+        user_roles r1_0 
+    join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    where
+        r1_0.user_id=?
+2026-05-11T12:49:08.273+05:00 DEBUG 5773 --- [0.0-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /roles
+2026-05-11T12:49:08.276+05:00 DEBUG 5773 --- [0.0-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-05-11T12:49:08.279+05:00 DEBUG 5773 --- [0.0-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[UserResponse(id=20, username=viewer, email=viewer@building.com, fullName=Наблюдатель, roles=[VIEWER (truncated)...]
+Hibernate: 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.full_name,
+        u1_0.password_hash,
+        r1_0.user_id,
+        r1_1.id,
+        r1_1.created_at,
+        r1_1.description,
+        r1_1.name,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    left join
+        user_roles r1_0 
+            on u1_0.id=r1_0.user_id 
+    left join
+        roles r1_1 
+            on r1_1.id=r1_0.role_id 
+    where
+        u1_0.id=?
+2026-05-11T12:49:08.282+05:00 DEBUG 5773 --- [0.0-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-11T12:49:08.285+05:00 DEBUG 5773 --- [0.0-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /roles
+2026-05-11T12:49:08.285+05:00 DEBUG 5773 --- [0.0-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/api/roles", parameters={}
+2026-05-11T12:49:08.285+05:00 DEBUG 5773 --- [0.0-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.building.management.controller.RoleController#getAllRoles()
+2026-05-11T12:49:08.286+05:00 DEBUG 5773 --- [0.0-8080-exec-5] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.building.management.controller.RoleController.getAllRoles(); target is of class [com.building.management.controller.RoleController]
+2026-05-11T12:49:08.287+05:00 DEBUG 5773 --- [0.0-8080-exec-5] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.building.management.controller.RoleController.getAllRoles(); target is of class [com.building.management.controller.RoleController]
+2026-05-11T12:49:08.287+05:00  INFO 5773 --- [0.0-8080-exec-5] c.b.m.controller.RoleController          : GET /api/roles - Fetching all roles
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.created_at,
+        r1_0.description,
+        r1_0.name 
+    from
+        roles r1_0
+2026-05-11T12:49:08.290+05:00 DEBUG 5773 --- [0.0-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-05-11T12:49:08.291+05:00 DEBUG 5773 --- [0.0-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[Role(id=1, name=ADMIN, description=Full system access, createdAt=null), Role(id=2, name=MANAGER, de (truncated)...]
+2026-05-11T12:49:08.293+05:00 DEBUG 5773 --- [0.0-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
