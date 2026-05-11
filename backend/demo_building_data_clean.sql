@@ -1,10 +1,9 @@
 -- ДЕМО-ДАННЫЕ: 5-этажное здание с помещениями и устройствами (без psql команд)
 
 -- Вставка здания
-INSERT INTO buildings (name, address, floors_count, description, created_at, updated_at)
+INSERT INTO buildings (name, address, floors_count, created_at, updated_at)
 VALUES 
-    ('Бизнес-центр "Технопарк"', 'г. Москва, ул. Инновационная, д. 42', 5, 
-     'Современный 5-этажный бизнес-центр с полной автоматизацией', NOW(), NOW())
+    ('Бизнес-центр "Технопарк"', 'г. Москва, ул. Инновационная, д. 42', 5, NOW(), NOW())
 ON CONFLICT DO NOTHING;
 
 -- Получить ID здания и создать все данные
@@ -188,7 +187,7 @@ BEGIN
     VALUES 
         (room_id, 'СКУД конференц-зал', 'ACCESS_CONTROL', 'Контроль доступа', 'access/floor5/conference/state', 'access/floor5/conference/set', 'ONLINE', NOW(), NOW()),
         (room_id, 'Камера конференц-зал', 'CAMERA', 'PTZ камера для видеоконференций', 'camera/floor5/conference/state', NULL, 'ONLINE', NOW(), NOW()),
-        (room_id, 'Освещение конференц-зал', 'LIGHT', 'Диммируемое освещение', 'light/floor5/conference/state', 'light/floor5/conference/set', 'ONLINE', NOW(), NOW()),
+        (room_id, 'Освещен��е конференц-зал', 'LIGHT', 'Диммируемое освещение', 'light/floor5/conference/state', 'light/floor5/conference/set', 'ONLINE', NOW(), NOW()),
         (room_id, 'Кондиционер конференц-зал', 'HVAC', 'Мультизональная система', 'hvac/floor5/conference/state', 'hvac/floor5/conference/set', 'ONLINE', NOW(), NOW());
     
     -- Переговорная 501
@@ -200,7 +199,7 @@ BEGIN
     VALUES 
         (room_id, 'СКУД переговорная 501', 'ACCESS_CONTROL', 'Контроль доступа', 'access/floor5/meeting501/state', 'access/floor5/meeting501/set', 'ONLINE', NOW(), NOW()),
         (room_id, 'Освещение 501', 'LIGHT', 'Светодиодное освещение', 'light/floor5/meeting501/state', 'light/floor5/meeting501/set', 'ONLINE', NOW(), NOW()),
-        (room_id, 'Кондиц��онер 501', 'HVAC', 'Сплит-система премиум-класса', 'hvac/floor5/meeting501/state', 'hvac/floor5/meeting501/set', 'ONLINE', NOW(), NOW());
+        (room_id, 'Кондицонер 501', 'HVAC', 'Сплит-система премиум-класса', 'hvac/floor5/meeting501/state', 'hvac/floor5/meeting501/set', 'ONLINE', NOW(), NOW());
     
     RAISE NOTICE 'Демо-данные успешно созданы!';
     

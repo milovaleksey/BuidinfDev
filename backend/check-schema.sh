@@ -1,20 +1,35 @@
 #!/bin/bash
 
-echo "🔍 Проверка схемы таблицы users:"
-sudo -u postgres psql -d building_management -c "\d users"
-
+echo "📋 Проверка структуры таблиц..."
 echo ""
-echo "🔍 Проверка схемы таблицы rooms:"
-sudo -u postgres psql -d building_management -c "\d rooms"
 
-echo ""
-echo "🔍 Проверка схемы таблицы devices:"
-sudo -u postgres psql -d building_management -c "\d devices"
+sudo -u postgres psql -d building_management << 'EOF'
+\echo '=== ТАБЛИЦА BUILDINGS ==='
+\d buildings
 
-echo ""
-echo "🔍 Проверка схемы таблицы buildings:"
-sudo -u postgres psql -d building_management -c "\d buildings"
+\echo ''
+\echo '=== ТАБЛИЦА FLOORS ==='
+\d floors
 
-echo ""
-echo "🔍 Проверка схемы таблицы floors:"
-sudo -u postgres psql -d building_management -c "\d floors"
+\echo ''
+\echo '=== ТАБЛИЦА ROOMS ==='
+\d rooms
+
+\echo ''
+\echo '=== ТАБЛИЦА DEVICES ==='
+\d devices
+
+\echo ''
+\echo '=== ТЕКУЩИЕ ДАННЫЕ ==='
+SELECT 'Buildings' as table_name, COUNT(*) as count FROM buildings
+UNION ALL
+SELECT 'Floors', COUNT(*) FROM floors
+UNION ALL
+SELECT 'Rooms', COUNT(*) FROM rooms
+UNION ALL
+SELECT 'Devices', COUNT(*) FROM devices;
+
+\echo ''
+\echo '=== СУЩЕСТВУЮЩИЕ ЗДАНИЯ ==='
+SELECT id, name, address, floors_count FROM buildings;
+EOF
