@@ -25,24 +25,24 @@ BEGIN
     END IF;
     
     -- ЭТАЖИ
-    INSERT INTO floors (building_id, name, level, area_sqm, description, created_at, updated_at)
-    VALUES (building_id, '1-й этаж', 1, 500.0, 'Первый этаж: холл, ресепшн, переговорные', NOW(), NOW())
+    INSERT INTO floors (building_id, name, floor_number, created_at, updated_at)
+    VALUES (building_id, '1-й этаж', 1, NOW(), NOW())
     RETURNING id INTO floor1_id;
     
-    INSERT INTO floors (building_id, name, level, area_sqm, description, created_at, updated_at)
-    VALUES (building_id, '2-й этаж', 2, 500.0, 'Второй этаж: офисные помещения', NOW(), NOW())
+    INSERT INTO floors (building_id, name, floor_number, created_at, updated_at)
+    VALUES (building_id, '2-й этаж', 2, NOW(), NOW())
     RETURNING id INTO floor2_id;
     
-    INSERT INTO floors (building_id, name, level, area_sqm, description, created_at, updated_at)
-    VALUES (building_id, '3-й этаж', 3, 500.0, 'Третий этаж: офисные помещения', NOW(), NOW())
+    INSERT INTO floors (building_id, name, floor_number, created_at, updated_at)
+    VALUES (building_id, '3-й этаж', 3, NOW(), NOW())
     RETURNING id INTO floor3_id;
     
-    INSERT INTO floors (building_id, name, level, area_sqm, description, created_at, updated_at)
-    VALUES (building_id, '4-й этаж', 4, 500.0, 'Четвертый этаж: IT-отдел и серверная', NOW(), NOW())
+    INSERT INTO floors (building_id, name, floor_number, created_at, updated_at)
+    VALUES (building_id, '4-й этаж', 4, NOW(), NOW())
     RETURNING id INTO floor4_id;
     
-    INSERT INTO floors (building_id, name, level, area_sqm, description, created_at, updated_at)
-    VALUES (building_id, '5-й этаж', 5, 500.0, 'Пятый этаж: руководство и конференц-залы', NOW(), NOW())
+    INSERT INTO floors (building_id, name, floor_number, created_at, updated_at)
+    VALUES (building_id, '5-й этаж', 5, NOW(), NOW())
     RETURNING id INTO floor5_id;
     
     -- ЭТАЖ 1: Холл
@@ -187,7 +187,7 @@ BEGIN
     VALUES 
         (room_id, 'СКУД конференц-зал', 'ACCESS_CONTROL', 'Контроль доступа', 'access/floor5/conference/state', 'access/floor5/conference/set', 'ONLINE', NOW(), NOW()),
         (room_id, 'Камера конференц-зал', 'CAMERA', 'PTZ камера для видеоконференций', 'camera/floor5/conference/state', NULL, 'ONLINE', NOW(), NOW()),
-        (room_id, 'Освещен��е конференц-зал', 'LIGHT', 'Диммируемое освещение', 'light/floor5/conference/state', 'light/floor5/conference/set', 'ONLINE', NOW(), NOW()),
+        (room_id, 'Освещене конференц-зал', 'LIGHT', 'Диммируемое освещение', 'light/floor5/conference/state', 'light/floor5/conference/set', 'ONLINE', NOW(), NOW()),
         (room_id, 'Кондиционер конференц-зал', 'HVAC', 'Мультизональная система', 'hvac/floor5/conference/state', 'hvac/floor5/conference/set', 'ONLINE', NOW(), NOW());
     
     -- Переговорная 501
