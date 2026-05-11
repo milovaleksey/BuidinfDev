@@ -13,7 +13,7 @@ sleep 3
 
 echo "🔨 Сборка проекта..."
 cd "$BACKEND_DIR"
-./mvnw clean package -DskipTests
+mvn clean package -DskipTests
 
 if [ $? -ne 0 ]; then
     echo "❌ Ошибка сборки!"
