@@ -248,10 +248,21 @@ class IntegratedBuildingService {
    * Получение этажа по ID
    */
   getFloor(floorId: string): Floor | undefined {
+    console.log('🔍 getFloor ищет этаж:', floorId);
+    console.log('📚 Доступные здания:', this.buildingSystem?.buildings.length);
+    
     for (const building of this.buildingSystem?.buildings || []) {
-      const floor = building.floors.find((f) => f.id === floorId);
-      if (floor) return floor;
+      console.log(`  🏢 Здание ${building.id} "${building.name}" имеет ${building.floors.length} этажей:`, 
+        building.floors.map(f => ({ id: f.id, name: f.name })));
+      
+      const floor = building.floors.find((f) => f.id === floorId || String(f.id) === String(floorId));
+      if (floor) {
+        console.log('✅ Найден этаж:', floor.id, floor.name);
+        return floor;
+      }
     }
+    
+    console.warn('❌ Этаж не найден:', floorId);
     return undefined;
   }
 
