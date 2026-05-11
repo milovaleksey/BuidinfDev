@@ -178,7 +178,16 @@ class BackendApiService {
         API_ENDPOINTS.ROOMS.LIST(floorId)
       );
       console.log(`✅ Получено помещений для этажа ${floorId}:`, rooms?.length || 0);
-      return rooms || [];
+      
+      // Добавляем дефолтные значения для полей, которых может не быть в БД
+      return (rooms || []).map(room => ({
+        ...room,
+        devices: room.devices || [],
+        position: room.position || { x: 50, y: 50 },
+        dimensions: room.dimensions || { width: 150, height: 120 },
+        polygon: room.polygon || undefined,
+        locked: room.locked || false,
+      }));
     } catch (error) {
       console.error('Failed to fetch rooms:', error);
       return [];
@@ -244,7 +253,14 @@ class BackendApiService {
         API_ENDPOINTS.DEVICES.LIST(roomId)
       );
       console.log(`✅ Получено устройств для помещения ${roomId}:`, devices?.length || 0);
-      return devices || [];
+      
+      // Добавляем дефолтные значения для полей, которых может не быть в БД
+      return (devices || []).map(device => ({
+        ...device,
+        position: device.position || { x: 20, y: 20 },
+        rotation: device.rotation || 0,
+        scale: device.scale || 1,
+      }));
     } catch (error) {
       console.error('Failed to fetch devices:', error);
       return [];

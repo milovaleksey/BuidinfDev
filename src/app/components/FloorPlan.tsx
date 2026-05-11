@@ -123,7 +123,7 @@ export function FloorPlan({
     e.preventDefault();
     e.stopPropagation();
     
-    // Проверяем, что кл��к был не по устройству
+    // Проверяем, что клк был не по устройству
     const target = e.target as SVGElement;
     if (target.tagName === 'rect' || target.tagName === 'polygon') {
       setContextMenu({
@@ -317,7 +317,9 @@ export function FloorPlan({
             );
           } else {
             // Rectangle room
-            const { width, height } = room.dimensions;
+            // Если dimensions отсутствует (данные из БД), используем дефолтные значения
+            const width = room.dimensions?.width || 150;
+            const height = room.dimensions?.height || 120;
 
             return (
               <g key={room.id}>
