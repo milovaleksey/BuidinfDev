@@ -1,0 +1,45 @@
+ :: Spring Boot ::                (v3.2.5)
+
+2026-05-11T12:42:30.748+05:00  INFO 5108 --- [           main] c.b.m.BuildingManagementApplication      : Starting BuildingManagementApplication using Java 17.0.18 with PID 5108 (/home/srvadmin/BuidinfDev/backend/target/classes started by root in /home/srvadmin/BuidinfDev/backend)
+2026-05-11T12:42:30.749+05:00 DEBUG 5108 --- [           main] c.b.m.BuildingManagementApplication      : Running with Spring Boot v3.2.5, Spring v6.1.6
+2026-05-11T12:42:30.749+05:00  INFO 5108 --- [           main] c.b.m.BuildingManagementApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-05-11T12:42:31.287+05:00  INFO 5108 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-11T12:42:31.413+05:00  INFO 5108 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120 ms. Found 9 JPA repository interfaces.
+2026-05-11T12:42:31.841+05:00  INFO 5108 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-11T12:42:31.849+05:00  INFO 5108 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-11T12:42:31.850+05:00  INFO 5108 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-05-11T12:42:31.889+05:00  INFO 5108 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2026-05-11T12:42:31.891+05:00  INFO 5108 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1112 ms
+2026-05-11T12:42:31.939+05:00  INFO 5108 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-11T12:42:32.141+05:00  INFO 5108 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2478b629
+2026-05-11T12:42:32.142+05:00  INFO 5108 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-11T12:42:32.199+05:00  INFO 5108 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-11T12:42:32.228+05:00  INFO 5108 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-05-11T12:42:32.251+05:00  INFO 5108 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-11T12:42:32.390+05:00  INFO 5108 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-11T12:42:32.425+05:00  WARN 5108 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-11T12:42:33.253+05:00  INFO 5108 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-11T12:42:33.433+05:00  INFO 5108 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-11T12:42:33.763+05:00 DEBUG 5108 --- [           main] c.b.m.security.JwtAuthenticationFilter   : Filter 'jwtAuthenticationFilter' configured for use
+2026-05-11T12:42:33.964+05:00  INFO 5108 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-11T12:42:34.560+05:00  WARN 5108 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-11T12:42:34.705+05:00 DEBUG 5108 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 51 mappings in 'requestMappingHandlerMapping'
+2026-05-11T12:42:34.793+05:00 DEBUG 5108 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-05-11T12:42:34.841+05:00  INFO 5108 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5125558b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@8c940e2, org.springframework.security.web.context.SecurityContextHolderFilter@3a571d3e, org.springframework.security.web.header.HeaderWriterFilter@51ce8293, org.springframework.web.filter.CorsFilter@6092d41, org.springframework.security.web.authentication.logout.LogoutFilter@503eac4c, com.building.management.security.JwtAuthenticationFilter@244c0fbe, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@66f62b8c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3db84bfa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@a263df9, org.springframework.security.web.session.SessionManagementFilter@7170da18, org.springframework.security.web.access.ExceptionTranslationFilter@616e7884, org.springframework.security.web.access.intercept.AuthorizationFilter@69a61267]
+2026-05-11T12:42:34.956+05:00 DEBUG 5108 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-05-11T12:42:34.987+05:00 DEBUG 5108 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-05-11T12:42:35.118+05:00  INFO 5108 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2026-05-11T12:42:35.130+05:00  INFO 5108 --- [           main] c.b.m.BuildingManagementApplication      : Started BuildingManagementApplication in 4.631 seconds (process running for 4.828)
+2026-05-11T12:43:06.173+05:00  INFO 5108 --- [0.0-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-11T12:43:06.173+05:00  INFO 5108 --- [0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-11T12:43:06.174+05:00 DEBUG 5108 --- [0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2026-05-11T12:43:06.174+05:00 DEBUG 5108 --- [0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2026-05-11T12:43:06.174+05:00 DEBUG 5108 --- [0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2026-05-11T12:43:06.175+05:00 DEBUG 5108 --- [0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@676b85f3
+2026-05-11T12:43:06.176+05:00 DEBUG 5108 --- [0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@531bffd
+2026-05-11T12:43:06.176+05:00 DEBUG 5108 --- [0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-05-11T12:43:06.176+05:00  INFO 5108 --- [0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-05-11T12:43:06.189+05:00 DEBUG 5108 --- [0.0-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2026-05-11T12:43:06.198+05:00 DEBUG 5108 --- [0.0-8080-exec-2] o.s.web.cors.DefaultCorsProcessor        : Reject: 'http://10.81.0.60:5173' origin is not allowed
+2026-05-11T12:43:20.836+05:00 DEBUG 5108 --- [0.0-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /auth/login
+2026-05-11T12:43:20.837+05:00 DEBUG 5108 --- [0.0-8080-exec-1] o.s.web.cors.DefaultCorsProcessor        : Reject: 'http://10.81.0.60:5173' origin is not allowed
