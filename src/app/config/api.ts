@@ -85,4 +85,14 @@ export const API_ENDPOINTS = {
   ROLES: {
     LIST: '/roles',
   },
+  PERMISSIONS: {
+    LIST: '/permissions',
+    CREATE: '/permissions',
+    UPDATE: (id: string) => `/permissions/${id}`,
+    DELETE: (id: string) => `/permissions/${id}`,
+  },
+  SYSTEM_TYPES: {
+    LIST: '/system-types',
+    GET: (id: string) => `/system-types/${id}`,
+  },
 };

@@ -265,7 +265,7 @@ export function UserManagement() {
                 <Label>Роли *</Label>
                 <div className="space-y-2 border rounded-lg p-4">
                   {roles.map(role => (
-                    <div key={role.id} className="flex items-start gap-3">
+                    <div key={role.id} className="flex items-start space-x-3 p-3 border rounded-lg hover:bg-gray-50">
                       <Checkbox
                         id={`role-${role.id}`}
                         checked={formData.roleIds.includes(role.id)}

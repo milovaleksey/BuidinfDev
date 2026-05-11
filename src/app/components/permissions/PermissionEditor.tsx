@@ -137,52 +137,46 @@ export function PermissionEditor({ userId, roleId, onClose }: PermissionEditorPr
       setLoading(true);
       const token = localStorage.getItem('token');
       
-      // Загрузить права
-      let permissionsUrl = '/api/permissions';
-      if (userId) {
-        permissionsUrl = `/api/permissions/user/${userId}`;
-      } else if (roleId) {
-        permissionsUrl = `/api/permissions/role/${roleId}`;
-      }
-      
-      const [permRes, systemRes, usersRes, rolesRes, buildingsRes] = await Promise.all([
-        fetch(permissionsUrl, {
+      // ВРЕМЕННО: Загружаем только users, roles, buildings
+      // Permissions и system-types требуют создания endpoints в бэкенде
+      const [usersRes, rolesRes, buildingsRes] = await Promise.all([
+        fetch(`${window.location.protocol}//${window.location.hostname}:8080/api/users`, {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('/api/permissions/system-types', {
+        fetch(`${window.location.protocol}//${window.location.hostname}:8080/api/roles`, {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('/api/users', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        }),
-        fetch('/api/roles', {
-          headers: { 'Authorization': `Bearer ${token}` }
-        }),
-        fetch('/api/buildings', {
+        fetch(`${window.location.protocol}//${window.location.hostname}:8080/api/buildings`, {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
       ]);
 
-      if (!permRes.ok || !systemRes.ok || !usersRes.ok || !rolesRes.ok || !buildingsRes.ok) {
+      if (!usersRes.ok || !rolesRes.ok || !buildingsRes.ok) {
         throw new Error('Failed to load data');
       }
 
-      const [permData, systemData, usersData, rolesData, buildingsData] = await Promise.all([
-        permRes.json(),
-        systemRes.json(),
+      const [usersData, rolesData, buildingsData] = await Promise.all([
         usersRes.json(),
         rolesRes.json(),
         buildingsRes.json(),
       ]);
 
-      setPermissions(permData);
-      setSystemTypes(systemData);
+      // Временные заглушки
+      setPermissions([]);
+      setSystemTypes([
+        { id: 1, code: 'access_control', name: 'Система контроля доступа', description: 'СКУД', icon: 'lock' },
+        { id: 2, code: 'cctv', name: 'Видеонаблюдение', description: 'Камеры', icon: 'camera' },
+        { id: 3, code: 'heating', name: 'Отопление', description: 'Термостаты', icon: 'thermometer' },
+        { id: 4, code: 'lighting', name: 'Освещение', description: 'Контроллеры света', icon: 'lightbulb' },
+        { id: 5, code: 'hvac', name: 'Кондиционирование', description: 'HVAC', icon: 'wind' },
+      ]);
+      
       setUsers(usersData);
       setRoles(rolesData);
       setBuildings(buildingsData);
     } catch (err) {
       console.error('Error loading permissions:', err);
-      setError('Ошибка загрузки данных');
+      setError('Ошибка загрузки данных. Убедитесь, что бэкенд запущен.');
     } finally {
       setLoading(false);
     }
