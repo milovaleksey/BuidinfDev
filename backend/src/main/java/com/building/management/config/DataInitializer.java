@@ -104,9 +104,12 @@ public class DataInitializer implements CommandLineRunner {
         building.setName("Главный офис");
         building.setAddress("ул. Примерная, д. 1, Москва");
         building.setFloorsCount(5);
-        building.setConfig(objectMapper.createObjectNode()
-            .put("yearBuilt", 2020)
-            .put("totalArea", 5000));
+        
+        Map<String, Object> buildingConfig = new HashMap<>();
+        buildingConfig.put("yearBuilt", 2020);
+        buildingConfig.put("totalArea", 5000);
+        building.setConfig(buildingConfig);
+        
         building.setCreatedBy(admin);
         building = buildingRepository.save(building);
 
@@ -141,9 +144,10 @@ public class DataInitializer implements CommandLineRunner {
         floor.setName("Этаж " + floorNumber);
         
         // Конфигурация плана этажа
-        floor.setPlanConfig(objectMapper.createObjectNode()
-            .put("width", 800)
-            .put("height", 600));
+        Map<String, Object> planConfig = new HashMap<>();
+        planConfig.put("width", 800);
+        planConfig.put("height", 600);
+        floor.setPlanConfig(planConfig);
         
         return floorRepository.save(floor);
     }
@@ -176,9 +180,10 @@ public class DataInitializer implements CommandLineRunner {
             room.setHeight(150.0);
             
             // Конфигурация
-            room.setConfig(objectMapper.createObjectNode()
-                .put("area", 30)
-                .put("capacity", roomType.equals("conference") ? 20 : 5));
+            Map<String, Object> roomConfig = new HashMap<>();
+            roomConfig.put("area", 30);
+            roomConfig.put("capacity", roomType.equals("conference") ? 20 : 5);
+            room.setConfig(roomConfig);
             
             room = roomRepository.save(room);
             
@@ -261,14 +266,16 @@ public class DataInitializer implements CommandLineRunner {
         device.setEnabled(true);
         
         // Начальное состояние
-        device.setState(objectMapper.createObjectNode()
-            .put("status", "online")
-            .put("lastUpdate", System.currentTimeMillis()));
+        Map<String, Object> state = new HashMap<>();
+        state.put("status", "online");
+        state.put("lastUpdate", System.currentTimeMillis());
+        device.setState(state);
         
         // Конфигурация
-        device.setConfig(objectMapper.createObjectNode()
-            .put("model", "Generic-" + deviceType)
-            .put("firmware", "1.0.0"));
+        Map<String, Object> config = new HashMap<>();
+        config.put("model", "Generic-" + deviceType);
+        config.put("firmware", "1.0.0");
+        device.setConfig(config);
         
         return device;
     }
