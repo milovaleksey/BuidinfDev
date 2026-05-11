@@ -6,10 +6,15 @@ echo ""
 
 # 1. Проверка процесса бэкенда
 echo "1️⃣ Проверка процесса бэкенда..."
-BACKEND_PID=$(pgrep -f "building-management")
+BACKEND_PID=$(pgrep -f "8080" | head -1)
+if [ -z "$BACKEND_PID" ]; then
+    # Попробуем найти по другому
+    BACKEND_PID=$(netstat -tlnp 2>/dev/null | grep ":8080" | awk '{print $7}' | cut -d'/' -f1)
+fi
+
 if [ -n "$BACKEND_PID" ]; then
     echo "✅ Бэкенд запущен (PID: $BACKEND_PID)"
-    ps aux | grep building-management | grep -v grep
+    ps aux | grep "$BACKEND_PID" | grep -v grep
 else
     echo "❌ Бэкенд НЕ ЗАПУЩЕН!"
     echo ""
