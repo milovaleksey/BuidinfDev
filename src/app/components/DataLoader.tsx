@@ -19,8 +19,16 @@ export function DataLoader({ children }: DataLoaderProps) {
       try {
         setIsLoading(true);
         setError(null);
+        console.log('🔄 DataLoader: начало загрузки данных...');
         await integratedBuildingService.init();
         console.log('✅ Данные загружены успешно');
+        
+        // Проверяем что реально загрузилось
+        const buildings = integratedBuildingService.getAllBuildings();
+        console.log('📊 Загружено зданий:', buildings.length);
+        buildings.forEach(b => {
+          console.log(`  - ${b.name} (${b.floors.length} этажей)`);
+        });
       } catch (err) {
         console.error('❌ Ошибка загрузки данных:', err);
         setError('Не удалось загрузить данные. Используется локальная версия.');
